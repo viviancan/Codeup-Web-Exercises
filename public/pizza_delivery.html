@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Atomic Pizza Delivery</title>
+</head>
+<body style="background-color: rgba(255, 255, 0, 0.24);">
+
+	<img src="/img/pizza.png">
+	<h1 style="text-align: center;">Atomic Pizza Delivery Order Form</h1>
+
+	<form method="POST" action="https://requestb.in/16g6hh41">
+
+		<h3>Customer Information</h3>
+		<div>
+			<label for="name">First Name</label>
+			<input type="text" name="name" id="name" placeholder="Enter Name" autofocus>
+		</div>
+		<div>
+			<label for ="l_name">Last Name</label>
+			<input type="text" name="l_name" id="l_name" placeholder="Enter Name">
+		</div>
+		<br>
+		<div>
+			<label for ="address">Address Line:</label>
+			<input type="text" name="address" id="address" placeholder="Street Name">
+		</div>
+		<div>
+			<label for ="city">City:</label>
+			<input type="text" name="city" id="city" placeholder="City">
+		</div>
+		<div>
+			<label for ="state">State:</label>
+			<input type="text" name="state" id="state" placeholder="State">
+		</div>
+		<div>
+			<label for ="zip">Zip Code:</label>
+			<input type="text" name="zip" id="zip" placeholder="Zip Code">
+		</div>
+		<div>
+			<label for ="phone">Phone Number:</label>
+			<input type="text" name="phone" id="phone" placeholder="(xxx)xxx-xxxx">
+		</div>
+		<br>
+		<h3>Pizza Options</h3>
+		<h4>Crust</h4>
+		<label>
+			<input type="radio" name="crust" id="crust" value ='thin'> Thin Crust
+		</label>
+		<label>
+			<input type="radio" name="crust" id="crust" value ='thin'> Thick Crust
+		</label>
+		<label>
+			<input type="radio" name="crust" id="crust" value ='thin'> Hand Tossed
+		</label>
+		<br>
+
+		<h4>Toppings</h4>
+		<label>
+			<input type="checkbox" name="toppings" id="topppings" value ='cheese'> Cheese
+		</label>
+		<label>
+			<input type="checkbox" name="toppings" id="topppings" value ='Pepperoni'> Pepperoni
+		</label>
+		<label>
+			<input type="checkbox" name="toppings" id="topppings" value ='spinach'> Spinach
+		</label>
+		<label>
+			<input type="checkbox" name="toppings" id="topppings" value ='Bacon'> Sausage
+		</label>
+		<label>
+			<input type="checkbox" name="toppings" id="topppings" value ='Pineapple'> Pineapple
+		</label>
+		<label>
+			<input type="checkbox" name="toppings" id="topppings" value ='Ham'> Ham
+		</label>			
+		<h4>Additional Options</h4>
+		<label>
+			<input type="radio" name="bake" id="bake" value ='regular'> Regular
+		</label>	
+		<label>
+			<input type="radio" name="bake" id="bake" value ='crispy'> Crispy
+		</label>
+		<br>
+		<br>
+		<div>
+			<button>Submit</button>
+		</div>
+	</form>
+</body>
+</html>

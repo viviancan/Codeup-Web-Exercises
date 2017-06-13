@@ -1,0 +1,47 @@
+.navbar {
+	margin-bottom: 0;
+}
+
+h1 {
+	font-family: 'Oswald', sans-serif;
+	font-size: 72px;
+}
+h2 {
+	font-family: 'Oswald', sans-serif;
+	font-size: 52px;
+}
+
+h3 {
+	font-weight: bold;
+	font-family: 'Oswald', sans-serif;
+	font-size: 22px;
+}
+
+.glyphicon {
+	display: block;
+	text-align: center;
+}
+
+.col-md-4 {
+	display: block;
+	text-align: center;
+}
+
+div.col-md-12{
+	text-align: center;
+	display: block;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.navbar-inverse .navbar-nav li a {
+	color: #d8cccc;
+	font-size: 16px;
+}

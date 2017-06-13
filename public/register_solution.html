@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration Sign-Up</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<h1>Registration Sign-Up Form</h1>
+	<p><em>Please register as a new user</em></p>
+
+	<form method="POST" action="https://requestb.in/16g6hh41">
+		<h3>User Information</h3>
+
+		<div>
+			<label for="first_name">First Name</label>
+			<input type="text" name="first_name" id="first_name" placeholder="Enter Name" autofocus required>
+		</div>
+		<br>
+		<div>
+			<label for="last_name">Last Name</label>
+			<input type="text" name="last_name" id="last_name" placeholder="Enter Name" required>
+		</div>
+		<br>
+		<div>
+			<label for="email">Email</label>
+			<input type="email" name="email" id="email" placeholder="Enter Email" required>
+		</div>
+		<br>
+		<div>
+			<label for="pwd">Password</label>
+			<input type="password" name="pwd" id="pwd" placeholder="Enter Password" required>
+		</div>
+		<br>
+		<div>
+			<label for="pwd_con">Password Confirmation</label>
+			<input type="password" name="pwd_con" id="pwd_con" placeholder="Confirm Password" required>
+		</div>
+		<br>
+		<div>
+			<input type="checkbox" name="newsletter" value="true" checked> Sign-Up for Newsletter </input>
+		</div>
+		<br>
+		<br>
+		<button>Register</button>
+	</form>
+</body>
+</html>
