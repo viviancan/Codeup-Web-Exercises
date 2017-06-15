@@ -50,7 +50,7 @@ var userNum = prompt("Please choose a number between 1 and 10");
 
 
 
-for (var i = 0; i <= 10; i++) {
+for (var i = 1; i <= 10; i++) {
 
 	console.log(userNum + " x " + i + " = " +  (userNum*i));
 }
@@ -58,12 +58,36 @@ for (var i = 0; i <= 10; i++) {
 
 //FOR LOOPS WITH RANDOM NUMBER GENERATOR ***********************************
 
-var randomNum = Math.floor(Math.random() * (200 - 20)) + 20;
+//var randomNumber;
+//
+//for (var i = 1; i <= 10; i++){
+//	randomNumber = Math.floor(Math.random() * (200 - 20)) + 20;
+//	
+//	if (randomNumber % 2 == 0) {
+//		console.log(randomNumber + " is even");
+//	} else {
+//		console.log(randomNumber + " is odd...");
+//	}
 
+//LOOP - FOLLOW THE PATTERN ***********************************
 
-	console.log(randomNum);
+//var output;
+//var stringNumber;
+//
+//for (var i = 1; i <= 10; i++){
+//	stringNumber = i.toString();
+//	stringNumber = stringNumber.substr(stringNumber.length -1);
+//	output = i.toString().
+//
+//
+//	console.log(i.toString().repeat(i));
+//
 
+//LOOP -  ***********************************
 
+for (var i = 100; i >= 5; i++){
+	console.log(i)
+}
 
 
 
