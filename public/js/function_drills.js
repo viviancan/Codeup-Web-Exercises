@@ -19,7 +19,7 @@ console.log(getRandomNumber(2, 10));
 function first(input) {
 	return "The first character is " + input.charAt(0);
 }
-console.log(first("Dog"));
+console.log(first("Lonetta"));
 
 //Write a fuction called `last(input)` that returns the last character of a string
 
@@ -48,7 +48,7 @@ function reverse(input) {
 	joinArray = reverseArray.join("");
 	return "The string reversed is " + joinArray;
 }
-console.log(reverse("GoCodeup"));
+console.log(reverse("Miriam"));
 
 //Write a function called `isNumeric(input)` that takes an input and returns a boolean if the input is numeric.
 
@@ -132,7 +132,7 @@ var subtract = subtract();
 var multiply = multiply();
 var divide = divide();
 function doMath(operator, a , b){
-	return 
+	return "The final answer is: " + 
 }
 
 

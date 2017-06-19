@@ -3,7 +3,7 @@
 // DO-WHILE LOOPS *****************************************************
 // I felt really proud of these few lines of code!
 
-/*
+
 // This is how you get a random number between 50 and 100
 var allCones = Math.floor(Math.random() * 50) + 50;
 
@@ -23,7 +23,7 @@ do {
 } while (allCones > 0) ;
 
 console.log("I sold all my ice cream! I hate this job! I should go to Codeup!!!")
-*/
+
 
 
 
@@ -84,11 +84,11 @@ for (var i = 1; i <= 10; i++) {
 //
 
 //LOOP -  ***********************************
-
+/*
 for (var i = 100; i >= 5; i++){
 	console.log(i)
 }
-
+*/
 
 
 
