@@ -15,8 +15,17 @@ names.forEach(function(element, index, array){
 
 })();
 
+// BONUS ACTIIVTY***************************************************** 
+//NOT COMPLETE!!!
 
+var userF = confirm("Are you converting from Farenheight to Celsius?");
+var userC;
 
+if (userF == true){
+	var userInput = prompt("Please enter temperature in degrees F.")
+	alert("The temperature in Celsius is : " + (userInput - 32)*(5/9));
+
+} else confirm("Are you converting from Celsius to Far");
 
 
 
