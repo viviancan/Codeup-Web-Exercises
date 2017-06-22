@@ -2,20 +2,39 @@
 (function(){
 	"use strict";
 
-// >>>>> VARIABLE ASSIGNMENT <<<<< //
+// ========================== VARIABLES ================================//
 
 	var leftDis = document.getElementById("leftDis");
-	var middleDis= document.getElementById("middleDis");
-	var rightDis= document.getElementById("rightDis");
-
+	var middleDis = document.getElementById("middleDis");
+	var rightDis = document.getElementById("rightDis");
+	var equal = document.getElementById("equal");
+	var clearCal = document.getElementById("clear");
 	
-// >>>>> FUNCTIONS <<<<< //
+
+// ========================== ADD EVENT LISTENER ======================== //
+
+	var numberBtns = document.getElementsByClassName("num");
+	for (var i = 0 ; i < numberBtns.length; i++){
+		numberBtns[i].addEventListener("click", numberInput); 
+	}
+
+	var operBtns = document.getElementsByClassName("oper");
+	for (var i = 0 ; i < operBtns.length; i++){
+		operBtns[i].addEventListener("click", operInput);
+	}
+
+	equal.addEventListener("click", mathOperation);
+
+	clearCal.addEventListener("click", clearCalculator);
+
+
+// ========================== FUNCTIONS ================================ //
 
 	function numberInput(){
-		if (leftDis == !" " && middleDis == !" "){
-			rightDis.innerHTML = this.value;
+		if (leftDis.innerText != "" && middleDis.innerText != ""){
+			rightDis.innerHTML += this.value;
 		}else{
-			leftDis.innerHTML = this.value;
+			leftDis.innerHTML += this.value;
 		}	
 	}
 
@@ -23,26 +42,38 @@
 		middleDis.innerHTML = this.value;
 	}
 
+	function clearCalculator(){
+		leftDis.innerText = "";
+		middleDis.innerText = "";
+		rightDis.innerText = "";
+	}
 
-// >>>>> ADD EVENT LISTENER <<<<< //
+	function mathClear(){
+		middleDis.innerText = "";
+		rightDis.innerText = "";
+	}
+// ========================== MATH OPERATIONS ================================ //
+	function mathOperation(){
+		var mathLeft = parseFloat(leftDis.innerText);
+		var mathRight = parseFloat(rightDis.innerText);
 
-	var numberBtns = document.getElementsByClassName("num");
-	for (var i = 0 ; i < numberBtns.length; i++){
-		numberBtns[i].addEventListener("click", numberInput); 
+		if (middleDis.innerText == "+"){
+			leftDis.innerText = mathLeft + mathRight;
+			mathClear();
 
-		//function(){
-		//document.getElementById("leftDis").innerHTML = this.value;
-		//}
-	};
+		}else if (middleDis.innerText == "-"){
+			leftDis.innerText = mathLeft - mathRight;
+			mathClear();
 
-	var operBtns = document.getElementsByClassName("oper");
-	for (var i = 0 ; i < operBtns.length; i++){
-		operBtns[i].addEventListener("click", operInput);
-	};
-	
-// >>>>> MATH OPERATIONS <<<<< //
+		}else if (middleDis.innerText == "x"){
+			leftDis.innerText = mathLeft * mathRight;
+			mathClear();
 
-
+		}else if (middleDis.innerText == "/"){
+			leftDis.innerText = mathLeft / mathRight;
+			mathClear();
+		}
+	}
 
 
 })();
