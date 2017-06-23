@@ -9,6 +9,7 @@
 	var rightDis = document.getElementById("rightDis");
 	var equal = document.getElementById("equal");
 	var clearCal = document.getElementById("clear");
+	var decimal = document.getElementById("decimal");
 	
 
 // ========================== ADD EVENT LISTENER ======================== //
@@ -27,14 +28,31 @@
 
 	clearCal.addEventListener("click", clearCalculator);
 
+	decimal.addEventListener("click", addDecimal);
+
 
 // ========================== FUNCTIONS ================================ //
+
+	function addDecimal(){
+		if (middleDis.innerHTML == ""){
+			if (leftDis.innerHTML.indexOf(".") < 0){
+				leftDis.innerHTML += ".";	
+				}
+			}else { 
+				if (rightDis.innerHTML.indexOf(".") < 0 ){
+					rightDis.innerHTML += ".";
+				}
+		     };
+	}
 
 	function numberInput(){
 		if (leftDis.innerText != "" && middleDis.innerText != ""){
 			rightDis.innerHTML += this.value;
+
+
 		}else{
 			leftDis.innerHTML += this.value;
+
 		}	
 	}
 
