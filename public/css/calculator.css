@@ -1,7 +1,72 @@
+
+.windowDisAll{
+	width: 500px;
+	padding: 30px;
+	margin: 0 auto;
+}
+
 .window {
 	border: 1px solid black;
-			height: 25px;
-			width: 100px;
-			text-align: center;
+	height: 10px;
+	text-align: center;
+	width: 150px;
+	padding: 20px;
+	float: left;
+	position: relative;
+	background-color: white;
+	font-size: 20px;
 }
+
+#middleDis {
+	width: 100px;
+}
+
+.fullCalculator {
+	border-radius: 25px;
+	border: 6px solid black;
+	padding: 20px; 
+	width: 550px;
+	height: 600px; 
+	margin: 0 auto;
+	background-color: #cacee1;
+}
+
+.calcButtons {
+	padding: 10px;
+	width: 50%;
+	margin: 0 auto;
+}
+
+.num, .oper, #decimal, #equal {
+	width: 2.5em;
+	background-color: grey;
+	border: none;
+	border-radius: 50%;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 20px;
+	margin: 4px 2px;
+	cursor: pointer;
+
+}
+
+#clear{
+	width: 100px;
+	background-color: grey;
+	border: none;
+	border-radius: 50%;
+	color: white;
+	padding: 10px 20px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 20px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+
 
