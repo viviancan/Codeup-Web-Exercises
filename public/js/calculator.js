@@ -48,11 +48,8 @@
 	function numberInput(){
 		if (leftDis.innerText != "" && middleDis.innerText != ""){
 			rightDis.innerHTML += this.value;
-
-
 		}else{
 			leftDis.innerHTML += this.value;
-
 		}	
 	}
 
