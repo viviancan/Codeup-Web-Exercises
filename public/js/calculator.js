@@ -67,6 +67,8 @@
 		middleDis.innerText = "";
 		rightDis.innerText = "";
 	}
+
+
 // ========================== MATH OPERATIONS ================================ //
 	function mathOperation(){
 		var mathLeft = parseFloat(leftDis.innerText);
@@ -86,6 +88,12 @@
 
 		}else if (middleDis.innerText == "/"){
 			leftDis.innerText = mathLeft / mathRight;
+			mathClear();
+		}else if (middleDis.innerText == "√"){
+			leftDis.innerText = Math.sqrt(mathLeft);
+			mathClear();
+		}else if (middleDis.innerText == "^2"){
+			leftDis.innerText = Math.pow(mathLeft, 2);
 			mathClear();
 		}
 	}

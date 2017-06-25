@@ -2,6 +2,8 @@
 	<html>
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
 		<title>Calculator Project!</title>
 
 		<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -19,63 +21,53 @@
 			<div class = "jumbotron">
 				<h1 class = "text-center">CALCULATOR</h1>
 			</div>
-			
-			<div class = "fullCalculator">
-				<div class = "windowDisAll" >
-					<div class = "window" id="leftDis" ></div>
-					<div class = "window" id="middleDis" ></div>	
-					<div class = "window" id="rightDis" ></div>
-				</div>
-				<div class = "eyes"> 
-					<div id = "leftEye">
-						<img src="img/left_eye.png">
+			<div class = "row">
+				<div class = "fullCalculator col-6">
+					<div class = "windowDisAll" >
+						<div class = "window" id="leftDis" ></div>
+						<div class = "window" id="middleDis" ></div>	
+						<div class = "window" id="rightDis" ></div>
 					</div>
-					<div id = "rightEye">
-						<img src="img/right_eye.png">
+					<div class = "eyes"> 
+						<div id = "leftEye">
+							<img src="img/left_eye.png">
+						</div>
+						<div id = "rightEye">
+							<img src="img/right_eye.png">
+						</div>
 					</div>
-				</div>
-				<div id="mouth">
-					<img src="img/mouth.png">
-				</div>
+					<div id="mouth">
+						<img src="img/mouth.png">
+					</div>
 	
-				<div class = "calcButtons">
-					<button class = "num" id = "btn9" value = "9" >9</button>
-					<button class = "num" id = "btn8" value = "8" >8</button>	
-					<button class = "num" id = "btn7" value = "7" >7</button>
-					<button class = "oper" id = "addition" value = "+" >+</button>
+					<div class = "calcButtons">
+						<button class = "num" id = "btn9" value = "9" >9</button>
+						<button class = "num" id = "btn8" value = "8" >8</button>	
+						<button class = "num" id = "btn7" value = "7" >7</button>
+						<button class = "oper" id = "addition" value = "+" >+</button>
 
-					<br>
-					<br>
-
-					<button class = "num" id = "btn6" value = "6" >6</button>
-					<button class = "num" id = "btn5" value = "5" >5</button>
-					<button class = "num" id = "btn4" value = "4" >4</button>
-					<button class = "oper" id = "subtract" value = "-" >-</button>
+						<button class = "num" id = "btn6" value = "6" >6</button>
+						<button class = "num" id = "btn5" value = "5" >5</button>
+						<button class = "num" id = "btn4" value = "4" >4</button>
+						<button class = "oper" id = "subtract" value = "-" >-</button>
 						
-					<br>
-					<br>
+						<button class = "num" id = "btn3" value = "3" >3</button>
+						<button class = "num" id = "btn2" value = "2" >2</button>
+						<button class = "num" id = "btn1" value = "1" >1</button>
+						<button class = "oper" id = "multiply" value = "x" >x</button>
 
-					<button class = "num" id = "btn3" value = "3" >3</button>
-					<button class = "num" id = "btn2" value = "2" >2</button>
-					<button class = "num" id = "btn1" value = "1" >1</button>
-					<button class = "oper" id = "multiply" value = "x" >x</button>
+						<button class = "num" id = "btn0" value = "0" >0</button>
+						<button id = "decimal" value = ".">.</button>
+						<button id = "equal" value = "=" >=</button>
+						<button class = "oper" id = "division" value = "/" >/</button>
 
-					<br>
-					<br>
+						<button id = "clear" >Clear</button>
+						<button class = "oper" id = "sqrt" value = "√" >√</button>
+						<button class = "oper" id = "square" value = "^2" >^2</button>
 
-					<button class = "num" id = "btn0" value = "0" >0</button>
-					<button id = "decimal" value = ".">.</button>
-					<button id = "equal" value = "=" >=</button>
-					<button class = "oper" id = "division" value = "/" >/</button>
-
-					<br>
-					<br>
-
-					<button id = "clear" >Clear</button>
+					</div>
 				</div>
-			
 			</div>
-
 
 			<script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
 			<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
