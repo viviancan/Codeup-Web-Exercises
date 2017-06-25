@@ -1,4 +1,14 @@
+.jumbotron{
+	background-color: #b5f5ef;
+}
+h1{
+	font-family: 'Fredericka the Great', cursive;
+	font-size: 100px;
+}
 
+body {
+	background-color: #009688;
+}
 .windowDisAll{
 	width: 500px;
 	height: 130px;
@@ -11,6 +21,8 @@
 	height: 70px;
 	padding: 10px;
 	text-align: center;
+	font-family: 'Bubbler One', sans-serif;
+
 	width: 150px;
 	float: left;
 	position: relative;
