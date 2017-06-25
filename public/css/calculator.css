@@ -66,7 +66,7 @@ body {
 }
 
 .fullCalculator {
-	border-radius: 25px;
+	border-radius: 50px;
 	border: 6px solid black;
 	padding: 20px; 
 	width: 550px;
@@ -120,6 +120,55 @@ body {
 	margin: 4px 4px;
 	cursor: pointer;
 }
+
+/*BOOTSTRAP ADDTIONAL CSS -- Still working on it! 
+
+.jumbotron{
+	background-color: #b5f5ef;
+	margin-bottom: 5px;
+}
+h1{
+	font-family: 'Fredericka the Great', cursive;
+	font-size: 25px;
+}
+
+.fullCalculator{
+	border-radius: 75px;
+	border: 6px solid black;
+}
+
+
+.window {
+	border: 1px solid black;
+	height: 25px;
+	padding: 5px;
+	text-align: center;
+	font-family: 'Bubbler One', sans-serif;
+	width: 75px;
+	float: left;
+	position: relative;
+	background-color: white;
+	font-size: 15px;
+	margin: 5px;
+}
+
+.row{
+	padding: 5px;
+	margin: 5px;
+}
+
+#leftDis{
+	float: left;
+}
+
+#rightDis{
+	float: left;
+}
+*/
+
+
+
+
 
 
 

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Calculator Project!</title>
+
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+
+		<link rel="stylesheet" type="text/css" href="css/calculator.css"> 
+
+		<link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+
+		<link href="https://fonts.googleapis.com/css?family=Bubbler+One" rel="stylesheet">
+
+
+	</head>
+	<body>
+		<div class = "jumbotron">
+			<div class = "fluid-container">
+				<h1 class = "text-center">CALCULATOR</h1>
+			</div>
+		</div>
+
+		<div class = "container fullCalculator col-md-4 col-md-offset-4" >
+			<div class = "row windowDisAll">
+				<!-- <div class = "windowDisAll" > -->
+					<div class = "window col-md-1 col-md-offset-3" id="leftDis" ></div>
+					<div class = "window col-md-1" id="middleDis" ></div>	
+					<div class = "window col-md-1" id="rightDis" ></div>
+				<!-- </div> -->
+			</div>
+			
+			<div class = "row eyes">
+				<!-- <div class = "eyes">  -->
+					<div class = "col-md-1 col-md-offset-3" id = "leftEye">
+						<img src="img/left_eye.png">
+					</div>
+
+					<div class = "col-md-1 col-md-offset-3" id = "rightEye">
+						<img src="img/right_eye.png">
+					</div>
+				<!-- </div> -->
+			</div>
+
+			<div class = "row mouth col-md-1 col-md-offset-5">
+				<!-- <div id="mouth"> -->
+					<img src="img/mouth.png">
+				<!-- </div> -->
+			</div>
+	
+			<div class = "calcButtons">
+				<div class = "row col-md-1 col-md-offset-3">
+					<button class = "num" id = "btn9" value = "9" >9</button>
+					<button class = "num" id = "btn8" value = "8" >8</button>	
+					<button class = "num" id = "btn7" value = "7" >7</button>
+					<button class = "oper" id = "addition" value = "+" >+</button>
+				</div>
+
+				<div class = "row">
+					<button class = "num" id = "btn6" value = "6" >6</button>
+					<button class = "num" id = "btn5" value = "5" >5</button>
+					<button class = "num" id = "btn4" value = "4" >4</button>
+					<button class = "oper" id = "subtract" value = "-" >-</button>
+				</div>	
+
+				<div class = "row">				
+					<button class = "num" id = "btn3" value = "3" >3</button>
+					<button class = "num" id = "btn2" value = "2" >2</button>
+					<button class = "num" id = "btn1" value = "1" >1</button>
+					<button class = "oper" id = "multiply" value = "x" >x</button>
+				</div>
+
+				<div class = "row">
+					<button class = "num" id = "btn0" value = "0" >0</button>
+					<button id = "decimal" value = ".">.</button>
+					<button id = "equal" value = "=" >=</button>
+					<button class = "oper" id = "division" value = "/" >/</button>
+				</div>
+
+				<div class = "row">
+					<button id = "clear" >Clear</button>
+					<button class = "oper" id = "sqrt" value = "√" >√</button>
+					<button class = "oper" id = "square" value = "^2" >^2</button>
+				</div>
+		
+			</div>
+		</div>
+
+
+			<script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+			<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="js/calculator.js"></script>
+
+		</div>
+	</body>
+</html>
