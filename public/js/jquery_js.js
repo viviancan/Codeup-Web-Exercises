@@ -5,7 +5,9 @@ $(document).ready(function(){
 //Part I =========================================================
 	//alert("The DOM has finished loading!");
 
-//Part 2 =========================================================
+/*=========================================================
+						Selectors
+=========================================================*/
 
 //ID Selectors 
 	/*var contents = $("#intro").html();
@@ -24,7 +26,39 @@ $(document).ready(function(){
 	// 	alert(contents);
 
 //Multiple Selectors
-	var multipleSelectors = $('hi, p, li');
+	//var multipleSelectors = $('hi, p, li');
+
+/*=========================================================
+						Mouse Events 
+=========================================================*/
+
+$('h1').click(changeColor);
+
+function changeColor (){
+	$(this).css('background-color', 'red');	
+}
+
+$('p').dblclick(changeFontSize);
+
+function changeFontSize(){
+	$(this).css('font-size', '18px');
+}
+
+$('li').hover(
+	function (){
+		$(this).css('color', 'red');
+	},
+	function (){
+		$(this).css('color', 'white');
+	}
+);
+	
+
+
+
+
+
+
 
 
 });
