@@ -13,12 +13,7 @@ $(document).ready(function(){
 
 //Class Selectors
 	
-	$('.codeup').css('border', '1px solid red');
-
-
-
-
-
+	//$('.codeup').css('border', '1px solid red');
 
 //Element Selectors
 	// $('li').css('font-size' , '20px');
@@ -27,6 +22,9 @@ $(document).ready(function(){
 
 	// var contents = $('h1').html();
 	// 	alert(contents);
+
+//Multiple Selectors
+	var multipleSelectors = $('hi, p, li');
 
 
 });
