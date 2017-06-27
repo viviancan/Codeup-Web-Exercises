@@ -2,21 +2,31 @@
 
 $(document).ready(function(){
 
-//Part I
+//Part I =========================================================
 	//alert("The DOM has finished loading!");
 
-//Part 2 
+//Part 2 =========================================================
+
 //ID Selectors 
 	/*var contents = $("#intro").html();
 		alert(contents);*/
 
 //Class Selectors
-	$('li').css('font-size' , '20px');
+	
+	$('.codeup').css('border', '1px solid red');
 
-	$('h1, p, li').css('background-color', 'yellow');
 
-	var contents = $('h1').html();
-		alert(contents);
+
+
+
+
+//Element Selectors
+	// $('li').css('font-size' , '20px');
+
+	// $('h1, p, li').css('background-color', 'yellow');
+
+	// var contents = $('h1').html();
+	// 	alert(contents);
 
 
 });
