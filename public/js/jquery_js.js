@@ -2,9 +2,20 @@
 
 $(document).ready(function(){
 
+//Part I
 	//alert("The DOM has finished loading!");
 
-	var contents = $("#intro").html();
+//Part 2 
+//ID Selectors 
+	/*var contents = $("#intro").html();
+		alert(contents);*/
+
+//Class Selectors
+	$('li').css('font-size' , '20px');
+
+	$('h1, p, li').css('background-color', 'yellow');
+
+	var contents = $('h1').html();
 		alert(contents);
 
 
