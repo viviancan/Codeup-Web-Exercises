@@ -32,29 +32,29 @@ $(document).ready(function(){
 						Mouse Events 
 =========================================================*/
 
-$('h1').click(changeColor);
 
-function changeColor (){
-	$(this).css('background-color', 'red');	
-}
 
-$('p').dblclick(changeFontSize);
-
-function changeFontSize(){
-	$(this).css('font-size', '18px');
-}
-
-$('li').hover(
-	function (){
-		$(this).css('color', 'red');
-	},
-	function (){
-		$(this).css('color', 'white');
+	function changeColor (){
+		$(this).css('background-color', 'red');	
 	}
-);
+	$('h1').click(changeColor);
+
+
+	function changeFontSize(){
+		$(this).css('font-size', '18px');
+	}
+	$('p').dblclick(changeFontSize);
+
+
+	$('li').hover(
+		function (){
+			$(this).css('color', 'red');
+		},
+		function (){
+			$(this).css('color', 'white');
+		}
+	);
 	
-
-
 
 
 
