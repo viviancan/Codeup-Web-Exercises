@@ -22,7 +22,7 @@ $(document).ready(function(){
 
 		}
 
-		if (i == konamiCode.length){				//# of iterations matches kCode.length = Success! 
+		if (i == konamiCode.length){				 
 			alert("You have gained 30 lives!");
 			console.log ("success!");
 			reset();

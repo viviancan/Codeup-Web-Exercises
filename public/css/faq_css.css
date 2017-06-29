@@ -1,0 +1,16 @@
+h1{
+	text-align: center;
+}
+
+dt{
+	font-weight: bold;
+}
+
+
+.invisible{
+	display: none;
+}
+
+.highlight{
+	background-color: magenta;
+}
