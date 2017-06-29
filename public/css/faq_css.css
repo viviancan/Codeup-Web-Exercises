@@ -1,6 +1,4 @@
-h1{
-	text-align: center;
-}
+
 
 dt{
 	font-weight: bold;
@@ -13,4 +11,12 @@ dt{
 
 .highlight{
 	background-color: magenta;
+}
+
+.highlight2{
+	background-color: yellow;
+}
+
+.bold{
+	font-weight: bold;
 }

@@ -16,6 +16,11 @@ $(document).ready(function() {
 		$(this).toggleClass('highlight');
 	})
 
+	$('button').click(function(){
+		$('ul li:last-child').toggleClass('highlight2')
+
+		//css('background-color','yellow');
+	})
 
 
  });
