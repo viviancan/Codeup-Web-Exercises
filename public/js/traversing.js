@@ -1,13 +1,10 @@
 (function(){
 //---------------------------------------------------------------------//
-
-
 	$('button').click(function(){
 		$('ul').each(function(){
 			$(this).children().last().toggleClass('highlight2');
 		})
 	})
-
 
 /*Solution
 	Create a button that, when clicked, makes the last li in each ul have a yellow background.
@@ -18,10 +15,6 @@
 		})
 	});
 */
-
-
-
-	
 
 //---------------------------------------------------------------------//
 
@@ -34,10 +27,10 @@
 
 //SOLUTION
 	
-	$('h3').click(function(){
-		$(this).next().children().toggleClass('bold');
+	// $('h3').click(function(){
+	// 	$(this).next().children().toggleClass('bold');
 
-	});
+	// });
 
 //---------------------------------------------------------------------//
 
@@ -48,16 +41,21 @@
 		$(this).parent().children().first().css('color', 'blue');
 	});
 
+//---------------------------------------------------------------------//
 
+	$('#newsX').click(function(e){
+		$('div').hide();
 
+	});
 
+//---------------------------------------------------------------------//
+	
+	$('h3').click(function(e){
+		$(this).next().slideToggle('slow');
+	});
 
-
-
-
-
-
-
+//---------------------------------------------------------------------//
+	$('h2').delay(8000).fadeIn(3000);
 
 
 

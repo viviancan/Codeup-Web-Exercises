@@ -1,4 +1,25 @@
+div{
+	border: 1px solid black;
+	background-color: grey;
 
+}
+
+div > h1{
+	text-align: center;
+	color: white;
+}
+
+span{
+	font-size: 40px;
+	color: white;
+}
+
+h2{
+	text-align: center;
+	color: red;
+	font-size: 40px;
+	display: none;
+}
 
 dt{
 	font-weight: bold;
@@ -19,4 +40,7 @@ dt{
 
 .bold{
 	font-weight: bold;
+}
+ul{
+	display: none;
 }
