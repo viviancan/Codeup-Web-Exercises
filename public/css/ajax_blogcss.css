@@ -1,0 +1,14 @@
+.jumbotron {
+	background-color: #4caf50;
+	color: white;
+	text-align: center;
+}
+
+h1{
+	font-weight: bold;
+}
+
+.category{
+	font-style: italic;
+	margin-bottom: 50px;
+}
