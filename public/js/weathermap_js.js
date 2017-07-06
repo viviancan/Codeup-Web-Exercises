@@ -26,41 +26,39 @@
 
 	function addWeatherToPage(data){
 		data.list.forEach(function(weather){
-			$("#insertWeather").append(
-				"<tr>" +
-				"<th>" + "Day ()" + "</th>" + 
-				"</tr>" +
-
-				"<tr>" + 
-				"<td>" + weather.temp.max + "°" + " / " + weather.temp.min + "°" + "</td>" +
-				"</tr>" +
-
-				"<tr>" +
-				"<td>" + "<img src='http://openweathermap.org/img/w/" + weather.weather[0].icon + ".png'>" +
-				"</td>"+
-				"</tr>"+
-
-				"<tr>" + 
-				"<td>" +  weather.weather[0].main + ": " + weather.weather[0].description + "</td>" +
-				"</tr>" +
-
-				"<tr>" + 
-				"<td>" + "<strong>Humidity: </strong>" + weather.humidity + "</td>" +
-				"</tr>" +
-
-				"<tr>" + 
-				"<td>" + "<strong>Wind: </strong>" + weather.speed + "</td>" +
-				"</tr>" +
-
-				"<tr>" + 
-				"<td>" + "<strong>Pressure: </strong>" + weather.pressure + "</td>" +
-				"</tr>"
-
-
-
-			)
+			weatherFormat(weather);
 		});
+	}
+
+	function weatherFormat(weather){
+		var htmlString = "";
+		htmlString += "<div class='col-md-4'" +
+			"<p>"+ "<strong>" + convertTime(weather.dt) + "</strong>" + "</p>" +
+			"<p>" + weather.temp.max + "°" + " / " + weather.temp.min + "°" + "</p>" +
+			"<p>" + "<img src='http://openweathermap.org/img/w/" + weather.weather[0].icon + ".png'>" + "</p>" +
+			"<p>" + "<strong>" + weather.weather[0].main + "</strong>"+ ": " + weather.weather[0].description + "</p>" +
+			"<p>" + "<strong>Humidity: </strong>" + weather.humidity + "</p>" +
+			"<p>" + "<strong>Wind: </strong>" + weather.speed + "</td>" + "</p>" +
+			"<p>" + "<strong>Pressure: </strong>" + weather.pressure + "</p>" +
+			"</div>"
+
+		$("#insertWeather").append(htmlString);
 	};
+
+	function convertTime(unix){
+		var dt = unix * 1000;
+		var date = new Date(dt);
+		var dayOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+		var monthName = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+		var formattedDate = dayOfTheWeek[date.getDay()] + ", " + monthName[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+
+		return formattedDate; 
+	}
+
+
+
+
+
 
 
 })();

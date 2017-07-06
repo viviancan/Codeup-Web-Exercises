@@ -1,10 +1,19 @@
-div{
-	padding: 20px;
-	background-color: rgba(73, 174, 254, 0.4);
-	margin: 0 auto;
-	width: 
+.col-md-4{
+	background-color: #efefef
+
+
 }
-table{
+
+.container{
+	background-color: rgba(73, 174, 254, 0.4);
+	text-align: center;
+}
+
+h1{
+	margin-bottom: 40px;
+}
+
+/*table{
 	border: solid black;
 	border-spacing: 5px;
 	margin: 0 auto;
@@ -23,4 +32,4 @@ th, td{
 th{
 	font-size: 20px;
 	font-weight: bold;
-}
+}*/
