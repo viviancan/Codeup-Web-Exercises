@@ -1,0 +1,26 @@
+div{
+	padding: 20px;
+	background-color: rgba(73, 174, 254, 0.4);
+	margin: 0 auto;
+	width: 
+}
+table{
+	border: solid black;
+	border-spacing: 5px;
+	margin: 0 auto;
+	background-color: #efefef;
+}
+
+th, td{
+	padding: 10px;
+	border: solid black;
+	width: 200px;
+	height: 50px;
+	text-align: center;
+
+}
+
+th{
+	font-size: 20px;
+	font-weight: bold;
+}
