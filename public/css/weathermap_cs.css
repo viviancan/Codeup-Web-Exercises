@@ -4,8 +4,10 @@ body{
 }
 
 .jumbotron{
-	background-color: #c5a7fb;
+	background-color: rgba(158, 158, 158, 0.52);
 }
+
+
 .col-md-4{
 	background-color: #efefef
 
