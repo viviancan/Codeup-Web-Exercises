@@ -1,11 +1,6 @@
 (function() {
 	"use strict";
 
-	// var requestWeather = $.get("http://api.openweathermap.org/data/2.5/weather", {
-	// 	APPID: "6ac2f305a43f171cb8e8ad2076b9a183" , 
-	// 	q: "San Antonio, TX",
-	// 	units: "imperial"
-	// });
 
 	var requestWeather = $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
 		APPID: "6ac2f305a43f171cb8e8ad2076b9a183" , 
@@ -54,6 +49,33 @@
 
 		return formattedDate; 
 	}
+
+
+		function map() {
+				//Creates new geocoder
+				var geocoder = new google.maps.Geocoder();
+
+				//Set default locaton to SATX
+				var defLocation = {lat: 29.426791, lng: -98.489602};
+
+				//map options
+				var mapOptions = {
+					zoom: 4,
+					center: defLocation
+				};
+
+				//Creates new map with specified map options in 'map' div
+				var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+
+				//creates marker at default location 
+				var marker = new google.maps.Marker({
+					position: defLocation,
+					map: map
+				});
+		 }
+		  map();
+
 
 
 

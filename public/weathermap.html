@@ -20,6 +20,11 @@
 			<h1>Weather Application</h1>
 		</div>
 
+		<div class="container">
+			<p>Latitude: <input type="text" id="lat"/> Longitude: <input type="text" id="lon"/></p>
+			<input type="submit">
+		</div>
+
 		<div class="container" >
 			<h3>San Antonio</h3>
 			<div id="insertWeather"></div>
@@ -31,33 +36,41 @@
 
 
 
-
-
-
-
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcBATRCaAV7NOyDNE4-yKaRiwX3rtuGvk">
+		</script>
 		<script type="text/javascript" src="/js/weathermap_js.js"></script>
 
 
-		<script>
+<!-- 		<script>
 			function initMap() {
-				var location = {lat: 29.426791, lng: -98.489602};
-				var map = new google.maps.Map(document.getElementById('map'), {
-					zoom: 4,
-					center: location
-				});
+				//Creates new geocoder
+				var geocoder = new google.maps.Geocoder();
 
+				//Set default locaton to SATX
+				var defLocation = {lat: 29.426791, lng: -98.489602};
+
+				//map options
+				var mapOptions = {
+					zoom: 4,
+					center: defLocation
+				};
+
+				//Creates new map with specified map options in 'map' div
+				var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+
+				//creates marker at default location 
 				var marker = new google.maps.Marker({
-					position: location,
+					position: defLocation,
 					map: map
 				});
 		 	}
 		</script>
+ -->
 
-		<script async defer
-		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcBATRCaAV7NOyDNE4-yKaRiwX3rtuGvk &callback=initMap">
-		</script>
+
 
 
 	</body>

@@ -2,6 +2,10 @@ body{
 	background-color: rgba(73, 174, 254, 0.4);
 
 }
+
+.jumbotron{
+	background-color: #c5a7fb;
+}
 .col-md-4{
 	background-color: #efefef
 
