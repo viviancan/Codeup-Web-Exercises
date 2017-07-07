@@ -1,0 +1,21 @@
+
+User input -> API Request
+A) Take user input of lat/lng and place into API Request
+	>User will input specific lat & lng
+		- Create lat input box
+		- Create lng input box
+
+	>User push Submit button
+		- Make button clickable >Add event listener 
+		- When button is clicked, store user input into a variable
+
+B) Get weather of specific lat/lng
+	- Take user input and update the lat/lng (with user input) of the API reuquest
+
+C) Update weather displays
+	- run addWeatherToPage fxn
+
+
+Change city name display --> user city
+	- identify name div
+	- insert city name (data.city.name)
