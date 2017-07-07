@@ -16,11 +16,49 @@
 	</head>
 	<body>
 
-		<h1>Weather Map!</h1>
-		<div class="container" id="insertWeather"></div>
+		<div class="jumbotron">
+			<h1>Weather Application</h1>
+		</div>
+
+		<div class="container" >
+			<h3>San Antonio</h3>
+			<div id="insertWeather"></div>
+		</div>
+			
+		<div class="container">
+			<div id="map"></div>
+		</div>
+
+
+
+
+
+
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/js/weathermap_js.js"></script>
+
+
+		<script>
+			function initMap() {
+				var location = {lat: 29.426791, lng: -98.489602};
+				var map = new google.maps.Map(document.getElementById('map'), {
+					zoom: 4,
+					center: location
+				});
+
+				var marker = new google.maps.Marker({
+					position: location,
+					map: map
+				});
+		 	}
+		</script>
+
+		<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcBATRCaAV7NOyDNE4-yKaRiwX3rtuGvk &callback=initMap">
+		</script>
+
+
 	</body>
 </html>

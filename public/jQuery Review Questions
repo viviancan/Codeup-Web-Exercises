@@ -1,0 +1,93 @@
+*-------------------------------------------------------------------*
+						jQuery Review Questions
+*-------------------------------------------------------------------*
+
+(1) What is the difference between javascript and jQuery
+
+(2) How would you add an event listner to every element that has a certain class?
+
+(3) How do you deal with asynchronous requests and responses?
+
+(4) $('.some-class').each(function () {
+		console.log(this);
+	})
+
+	What will we see in the console? What is the type of the logged object?
+		>> We would see all ________ with the class of 'some-class'
+
+(5)Consider the following:
+	var a = document.getElementById('#some-id');
+	var b = $('#some-id');
+
+	Is there any difference between a and b?
+
+		>> A = JavaScript method vs B = jQuery method
+
+
+(6) Consider the following files
+	
+	students.json
+		[
+			{
+				"name": "Bob",
+				"age": 21
+			},
+			{
+				"name": "Billy Bob",
+				"age": 22
+			}
+		]
+
+	students.js
+
+		var name;
+		$.get('/students.json').done(function (data){
+			name = data[0].name
+		})
+
+		console.log(name)
+
+		What will we see in the console? Explain?
+			>> We would see "Bob" ... 0 location in array is the first position
+
+(7) Consider the following code
+
+	html
+		<button class="button">1</button>
+		<button class="button">2</button>
+		<button class="button">3</button>
+		<button class="button">4</button>
+
+	js
+		function eventListener(){
+			alert('You clicked a button!');
+		}
+
+	How would add an event listener function as an event listener to all the buttons?
+
+
+(8) What will we see in the console when the following code is run? Why?
+
+	var someNumber = 42;
+
+	var myObject = {
+		logSomeNumber: function (){
+			console.log('logSomeNumber');
+			console.log(this.someNumber);
+		},
+
+		waitThenLogSomeNumber: function (){
+			setTimeout(function(){
+				console.log('waitThenLogSomeNumber');
+				console.log(this.someNumber);
+			}, 100);
+		},
+
+		someNumber: 9000
+	}
+
+	myObject.waitThenLogSomeNumber();
+	myObject.logSomeNumber();
+
+
+
