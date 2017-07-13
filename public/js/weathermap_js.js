@@ -1,6 +1,9 @@
 (function() {
 	"use strict";
 
+/*------------------------------------------------------------------------------------------------
+	Functions
+------------------------------------------------------------------------------------------------*/
 	//addWeatherToPage adds weather to page for each day. calls weatherFormat function for proper formatting
 	function addWeatherToPage(data){
 		data.list.forEach(function(weather){
@@ -43,88 +46,131 @@
 
 
 /*------------------------------------------------------------------------------------------------
-Search Bar STUFF
+	Maps, maps, maps
 ------------------------------------------------------------------------------------------------*/
+	var marker;
 		
-		//Set default locaton to SATX
-		var defLocation = new google.maps.LatLng(29.426791, -98.489602);
+	//Set default locaton to SATX
+	var defLocation = new google.maps.LatLng(29.426791, -98.489602);
 
-		//map options
-		var mapOptions = {
-			zoom: 5,
-			center: defLocation,
-			mapTypeId: 'roadmap'
-		};
-
-		//Creates new map with specified map options in 'map' div
-		var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+	//map options
+	var mapOptions = {
+		zoom: 5,
+		center: defLocation,
+		mapTypeId: 'roadmap'
+	};
 
 
-		var input = document.getElementById('searchBox');
-		var searchBoxInput = new google.maps.places.SearchBox(input);
+	//Creates new map with specified map options in 'map' div
+	var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-		var marker;
-
-		$(input).keypress(function(e) {
-			if(e.which == 13) {
-				var cityValue = $('#searchBox').val();
-				var geocoder = new google.maps.Geocoder();
-				var geocoderOptions = {
-					address: cityValue
-				}
-				
-				geocoder.geocode(geocoderOptions, function(results, status) {
-					if (status === 'OK'){
-						var latitude = results[0].geometry.location.lat();
-						var longitude = results[0].geometry.location.lng();	
-
-						$("#insertWeather").html(" ");
-
-						getWeather(latitude, longitude, results[0].formatted_address);
+	//Creates draggable marker at default location 
+	marker = new google.maps.Marker({
+		position: defLocation,
+		map: map,
+		draggable: true,
+		title: "Drag me!"
+	});
 
 
+	google.maps.event.addListener(marker, 'dragend', function(){
 
-						map.setCenter(results[0].geometry.location);
+		//Gets lat & long position assigns to variable
+		// var latMapMarker = this.getPosition().lat();
+		// var longMapMarker = this.getPosition().lng();
+		var latLng = {
+			lat: this.getPosition().lat(),
+			lng: this.getPosition().lng()
+		}
+		
+		//creates new geocoder for marker dragger
+		var geocoder = new google.maps.Geocoder();
+		
 
-						if(!marker) {
-							marker = new google.maps.Marker({
-								map: map,
-								position: results[0].geometry.location	
-							});
-						}else {
-							marker.setPosition(results[0].geometry.location);
-						}
+		geocoder.geocode( {'location': latLng}, function(results, status){
+			if (status == 'OK'){
+				console.log(results)
+				var address = (results[4].formatted_address)
 
-					} else { 
-						console.log("Geocode Error" + status);
-					}
-				});
+			} else{
+				console.log("Geocode Error" + status);
 			}
-		});	
+		getWeather(latLng.lat, latLng.lng, address);
+		})
+	});
 
 
-		function getWeather(latitude, longitude, formatAddress){
-			var requestWeather = $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
-				APPID: "6ac2f305a43f171cb8e8ad2076b9a183" , 
-				lat: latitude ,
-				lon: longitude,
-				units: "imperial",
-				cnt: 3
-			})
 
-			//If the request is succusessful, it will call the addWeatherToPage function
-			requestWeather.done(function(data){
-				console.log(data);
-				addCityName(formatAddress);
-				addWeatherToPage(data);
-			})
 
-			//If the request fails, error and status will be console logged
-			requestWeather.fail(function(jqXHR, status, error){
-				console.log(status);
-				console.log(error);
-			});	
+	//targets search box allows for autocomplete
+	var input = document.getElementById('searchBox');
+	var searchBoxInput = new google.maps.places.SearchBox(input);
+
+	//global marker variable
+
+	//when enter key is 
+	$(input).keypress(function(e) {
+		if(e.which == 13) {
+			var cityValue = $('#searchBox').val();
+			var geocoder = new google.maps.Geocoder();
+			var geocoderOptions = {
+				address: cityValue
+			}
 			
+			geocoder.geocode(geocoderOptions, function(results, status) {
+				if (status === 'OK'){
+					var latitude = results[0].geometry.location.lat();
+					var longitude = results[0].geometry.location.lng();	
+
+					// $("#insertWeather").html(" ");
+
+					getWeather(latitude, longitude, results[0].formatted_address);
+
+					map.setCenter(results[0].geometry.location);
+
+					if(!marker) {
+						marker = new google.maps.Marker({
+							map: map,
+							position: results[0].geometry.location	
+						});
+					}else {
+						marker.setPosition(results[0].geometry.location);
+					}
+
+				} else { 
+					console.log("Geocode Error" + status);
+				}
+			});
+		}
+	});	
+
+	//getWeather makes weather request, will use lat & long from geocoder
+	function getWeather(latitude, longitude, formatAddress){
+		$("#insertWeather").html(" ");
+
+
+		var requestWeather = $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
+			APPID: "6ac2f305a43f171cb8e8ad2076b9a183" , 
+			lat: latitude ,
+			lon: longitude,
+			units: "imperial",
+			cnt: 3
+		})
+
+		//If the request is succusessful, it will call the addWeatherToPage function
+		requestWeather.done(function(data){
+			console.log(data);
+			console.log(data.city.name)
+			addCityName(formatAddress);
+			addWeatherToPage(data);
+		})
+
+		//If the request fails, error and status will be console logged
+		requestWeather.fail(function(jqXHR, status, error){
+			console.log(status);
+			console.log(error);
+		});	
+		
 		}
 
 // //draggable weather map
