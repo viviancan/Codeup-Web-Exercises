@@ -1,15 +1,32 @@
 body{
-	background-color: rgba(73, 174, 254, 0.4);
+	background-color: #93E1D8;
 
 }
 
 .jumbotron{
-	background-color: rgba(158, 158, 158, 0.52);
+	background-color: #AA4465;
+	color: #D8CCC2;
+	font-family: 'Raleway', sans-serif;
+
+}
+
+#searchBox{
+	width: 250px;
+	height: 40px;
+	padding: 5px;
+	font-style: italic;
+	box-shadow: 0 8px 6px -6px black;
+	margin-bottom: 20px;
+}
+
+#button{
 }
 
 
 .col-md-4{
-	background-color: #efefef
+	background-color: #DDFFF7;
+	box-shadow: inset 0 0 5px #AA4465;
+	padding: 15px 15px;
 
 }
 
@@ -23,7 +40,6 @@ body{
 }
 
 h1{
-	margin-bottom: 40px;
 	text-align: center;
 }
 
@@ -37,4 +53,6 @@ h3{
 	width: 100%;
 	height: 400px;
 	background-color: grey
+	box-shadow: 0 8px 6px -6px black;
+
 }

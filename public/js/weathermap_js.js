@@ -104,9 +104,6 @@
 /*------------------------------------------------------------------------------------------------
 Search Bar Autocomplete
 ------------------------------------------------------------------------------------------------*/
-//Sets up orginal map
-	function map() {
-
 		//Set default locaton to SATX
 		var defLocation = new google.maps.LatLng(29.426791, -98.489602);
 
@@ -120,65 +117,56 @@ Search Bar Autocomplete
 		//Creates new map with specified map options in 'map' div
 		var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-  
-		 var input = document.getElementById('searchBox');
-		 var searchBoxInput = new google.maps.places.SearchBox(input);
+
+		var input = document.getElementById('searchBox');
+		var searchBoxInput = new google.maps.places.SearchBox(input);
 
 
 		$(input).keypress(function(e) {
 			if(e.which == 13) {
-				var marker = '';
 				var cityValue = $('#searchBox').val();
-				console.log(cityValue);
-
 				var geocoder = new google.maps.Geocoder();
 				var geocoderOptions = {
 					address: cityValue
 				}
 				
 				geocoder.geocode(geocoderOptions, function(results, status) {
-					console.log(results)
+					if (status === 'OK'){
+						var latitude = results[0].geometry.location.lat();
+						var longitude = results[0].geometry.location.lng();	
 
-					var latitude = results[0].geometry.location.lat();
-					var longitude = results[0].geometry.location.lng();
-					console.log(latitude);
-					console.log(longitude); 
-					console.log(results[0].formatted_address);
+						$("#insertWeather").html(" ");
 
-					$("#insertWeather").html(" ");
+						var requestWeather = $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
+							APPID: "6ac2f305a43f171cb8e8ad2076b9a183" , 
+							lat: latitude ,
+							lon: longitude,
+							units: "imperial",
+							cnt: 3
+						})
 
-					var requestWeather = $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
-						APPID: "6ac2f305a43f171cb8e8ad2076b9a183" , 
-						lat: latitude ,
-						lon: longitude,
-						units: "imperial",
-						cnt: 3
-					})
+						//If the request is succusessful, it will call the addWeatherToPage function
+						requestWeather.done(function(data){
+							console.log(data);
+							addCityName(results[0].formatted_address);
+							addWeatherToPage(data);
+						})
 
-					//If the request is succusessful, it will call the addWeatherToPage function
-					requestWeather.done(function(data){
-						console.log(data);
-						// $("#cityName").html(data.city.name);
-						addCityName(results[0].formatted_address);
-						addWeatherToPage(data);
-					})
+						//If the request fails, error and status will be console logged
+						requestWeather.fail(function(jqXHR, status, error){
+							console.log(status);
+							console.log(error);
+						});	
 
-					//If the request fails, error and status will be console logged
-					requestWeather.fail(function(jqXHR, status, error){
-						console.log(status);
-						console.log(error);
-					});	
-
-					map.setCenter(results[0].geometry.location);
-						marker = new google.maps.Marker({
-						map: map,
-						position: results[0].geometry.location	
-					});
-	   
+						map.setCenter(results[0].geometry.location);
+							var marker = new google.maps.Marker({
+							map: map,
+							position: results[0].geometry.location	
+						});
+					} else { 
+						console.log("Geocode Error" + status);
+					}
 				});
 			}
 		});	
-	};
-	map();
-
 })();
