@@ -1,14 +1,12 @@
 body{
-	background-color: #93E1D8;
-
+	background-color: #CDFBE7;
 	
 
 }
 
 .header{
 	/*background-color: #AA4465;*/
-	  background-image: linear-gradient(90deg, #AA4465, #FFFFFF);
-
+	background-image: linear-gradient(90deg, #9A98B5, #FFFFFF);
 	color: white;
 	font-family: 'Raleway', sans-serif;
 	font-size: 50px;
@@ -21,7 +19,7 @@ body{
 
 #searchBox{
 	width: 250px;
-	height: 20px;
+	height: 40px;
 	padding-left: 5px;
 	font-style: italic;
 	box-shadow: 0 8px 6px -6px black;
@@ -55,7 +53,7 @@ body{
 
 h3{
 	text-align: left;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Raleway', sans-serif;
 }
 
 

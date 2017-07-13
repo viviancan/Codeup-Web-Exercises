@@ -24,7 +24,7 @@
 			"<p>" + "<strong>Pressure: </strong>" + weather.pressure + "</p>" +
 			"</div>"
 
-	//appends weather data & format into the insertWeather div
+		//appends weather data & format into the insertWeather div
 		$("#insertWeather").append(htmlString);
 	};
 
@@ -48,6 +48,7 @@
 /*------------------------------------------------------------------------------------------------
 	Maps, maps, maps
 ------------------------------------------------------------------------------------------------*/
+	//global marker variable
 	var marker;
 		
 	//Set default locaton to SATX
@@ -59,7 +60,6 @@
 		center: defLocation,
 		mapTypeId: 'roadmap'
 	};
-
 
 	//Creates new map with specified map options in 'map' div
 	var map = new google.maps.Map(document.getElementById('map'), mapOptions);
@@ -75,18 +75,15 @@
 
 	google.maps.event.addListener(marker, 'dragend', function(){
 
-		//Gets lat & long position assigns to variable
-		// var latMapMarker = this.getPosition().lat();
-		// var longMapMarker = this.getPosition().lng();
 		var latLng = {
 			lat: this.getPosition().lat(),
 			lng: this.getPosition().lng()
 		}
-		
+
 		//creates new geocoder for marker dragger
 		var geocoder = new google.maps.Geocoder();
 		
-
+		//reverse geocoding 
 		geocoder.geocode( {'location': latLng}, function(results, status){
 			if (status == 'OK'){
 				console.log(results)
@@ -99,16 +96,11 @@
 		})
 	});
 
-
-
-
 	//targets search box allows for autocomplete
 	var input = document.getElementById('searchBox');
 	var searchBoxInput = new google.maps.places.SearchBox(input);
 
-	//global marker variable
-
-	//when enter key is 
+	//when enter key is pressed will run geocoding 
 	$(input).keypress(function(e) {
 		if(e.which == 13) {
 			var cityValue = $('#searchBox').val();
@@ -144,17 +136,20 @@
 		}
 	});	
 
+
 	//getWeather makes weather request, will use lat & long from geocoder
 	function getWeather(latitude, longitude, formatAddress){
+
 		$("#insertWeather").html(" ");
 
+		var count = 3
 
 		var requestWeather = $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
 			APPID: "6ac2f305a43f171cb8e8ad2076b9a183" , 
 			lat: latitude ,
 			lon: longitude,
 			units: "imperial",
-			cnt: 3
+			cnt: count
 		})
 
 		//If the request is succusessful, it will call the addWeatherToPage function
@@ -172,68 +167,5 @@
 		});	
 		
 		}
-
-// //draggable weather map
-
-// Sets up orginal map
-// 	function map() {
-
-// 		//Set default locaton to SATX
-// 		var defLocation = new google.maps.LatLng(29.426791, -98.489602);
-
-// 		//map options
-// 		var mapOptions = {
-// 			zoom: 4,
-// 			center: defLocation
-// 		};
-
-// 		//Creates new map with specified map options in 'map' div
-// 		var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-// 		//creates draggable marker at default location 
-// 		var marker = new google.maps.Marker({
-// 			position: defLocation,
-// 			map: map,
-// 			draggable: true,
-// 			title: "Drag me!"
-// 		});
-
-// 		google.maps.event.addListener(marker, 'dragend', function(){
-
-// 			//clears the weather display
-// 			$("#insertWeather").html(" ");
-
-// 			//Gets lat & long position assigns to variable
-// 			var latMapMarker = this.getPosition().lat();
-// 			var longMapMarker = this.getPosition().lng();
-
-// 			//Makes request to openweather using lat and long from dragged marker
-// 			var requestWeather = $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
-// 				APPID: "6ac2f305a43f171cb8e8ad2076b9a183" , 
-// 				lat: latMapMarker ,
-// 				lon: longMapMarker,
-// 				units: "imperial",
-// 				cnt: 3
-// 			})
-
-// 			//If the request is succusessful, it will call the addWeatherToPage function
-// 			requestWeather.done(function(data){
-// 				console.log(data);
-// 				// $("#cityName").html(data.city.name);
-// 				addCityName(data.city.name);
-// 				addWeatherToPage(data);
-// 			})
-
-// 			//If the request fails, error and status will be console logged
-// 			requestWeather.fail(function(jqXHR, status, error){
-// 				console.log(status);
-// 				console.log(error);
-// 			});
-// 		});
-		
-// 	};
-// 		map();
-
-
 
 })();
