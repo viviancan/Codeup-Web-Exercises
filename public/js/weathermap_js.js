@@ -1,8 +1,7 @@
 (function() {
 	"use strict";
-
 /*------------------------------------------------------------------------------------------------
-	Functions
+	Weather Functions
 ------------------------------------------------------------------------------------------------*/
 	//addWeatherToPage adds weather to page for each day. calls weatherFormat function for proper formatting
 	function addWeatherToPage(data){
@@ -46,7 +45,7 @@
 
 
 /*------------------------------------------------------------------------------------------------
-	Maps, maps, maps
+	Maps - Get weather by dragging marker
 ------------------------------------------------------------------------------------------------*/
 	//global marker variable
 	var marker;
@@ -74,7 +73,7 @@
 
 
 	google.maps.event.addListener(marker, 'dragend', function(){
-
+		
 		var latLng = {
 			lat: this.getPosition().lat(),
 			lng: this.getPosition().lng()
@@ -92,10 +91,15 @@
 			} else{
 				console.log("Geocode Error" + status);
 			}
+		$('#searchBox').val(address);
 		getWeather(latLng.lat, latLng.lng, address);
 		})
 	});
 
+
+/*------------------------------------------------------------------------------------------------
+	Maps - Get weather by search box
+------------------------------------------------------------------------------------------------*/
 	//targets search box allows for autocomplete
 	var input = document.getElementById('searchBox');
 	var searchBoxInput = new google.maps.places.SearchBox(input);
@@ -103,59 +107,64 @@
 	//when enter key is pressed will run geocoding 
 	$(input).keypress(function(e) {
 		if(e.which == 13) {
-			var cityValue = $('#searchBox').val();
-			var geocoder = new google.maps.Geocoder();
-			var geocoderOptions = {
-				address: cityValue
-			}
-			
-			geocoder.geocode(geocoderOptions, function(results, status) {
-				if (status === 'OK'){
-					var latitude = results[0].geometry.location.lat();
-					var longitude = results[0].geometry.location.lng();	
-
-					// $("#insertWeather").html(" ");
-
-					getWeather(latitude, longitude, results[0].formatted_address);
-
-					map.setCenter(results[0].geometry.location);
-
-					if(!marker) {
-						marker = new google.maps.Marker({
-							map: map,
-							position: results[0].geometry.location	
-						});
-					}else {
-						marker.setPosition(results[0].geometry.location);
-					}
-
-				} else { 
-					console.log("Geocode Error" + status);
-				}
-			});
+			geocodeSearch();
 		}
 	});	
 
+	//when submit button clicked, geocoding will run
+	$("#submit").click(function() {
+		geocodeSearch();
+	});	
+
+
+	//will get value in search box, then run geocoding, then make weather request
+	function geocodeSearch (){
+		var cityValue = $('#searchBox').val();
+		var geocoder = new google.maps.Geocoder();
+		var geocoderOptions = {
+			address: cityValue
+		}
+		
+		geocoder.geocode(geocoderOptions, function(results, status) {
+			if (status === 'OK'){
+				var latitude = results[0].geometry.location.lat();
+				var longitude = results[0].geometry.location.lng();	
+
+				getWeather(latitude, longitude, results[0].formatted_address);
+
+				map.setCenter(results[0].geometry.location);
+
+				if(!marker) {
+					marker = new google.maps.Marker({
+						map: map,
+						position: results[0].geometry.location	
+					});
+				}else {
+					marker.setPosition(results[0].geometry.location);
+				}
+
+			} else { 
+				console.log("Geocode Error" + status);
+			}
+		});
+	}
 
 	//getWeather makes weather request, will use lat & long from geocoder
 	function getWeather(latitude, longitude, formatAddress){
 
 		$("#insertWeather").html(" ");
 
-		var count = 3
-
 		var requestWeather = $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
 			APPID: "6ac2f305a43f171cb8e8ad2076b9a183" , 
 			lat: latitude ,
 			lon: longitude,
 			units: "imperial",
-			cnt: count
+			cnt: 3
 		})
 
 		//If the request is succusessful, it will call the addWeatherToPage function
 		requestWeather.done(function(data){
 			console.log(data);
-			console.log(data.city.name)
 			addCityName(formatAddress);
 			addWeatherToPage(data);
 		})
@@ -167,5 +176,7 @@
 		});	
 		
 		}
+
+
 
 })();
