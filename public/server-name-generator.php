@@ -1,39 +1,52 @@
 <?php  
 
-$adjectiveArray = array('new', 'good', 'important', 'bad', 'best', 'purple', 'human', 'hard', 'greatest', 'other');
+$adjectiveArray = array('New', 'Good', 'Important', 'Bad', 'Best', 'Purple', 'Human', 'Hard', 'Greatest', 'Other');
 
-$nounArray = array('book', 'eye', 'mother', 'money', 'night', 'world', 'study', 'time', 'school', 'system');
+$nounArray = array('Book', 'Eye', 'Mother', 'Money', 'Night', 'World', 'Study', 'Time', 'School', 'System');
 
 
 function randomElement($adjective, $noun)
 {
 
-
 	$randomAdj = array_rand($adjective);
-	echo $adjective[$randomAdj] . " ";
-
-	// $randomNoun = array_rand($noun);
-	// echo $noun[$randomNoun];
-
+	
+	$randomNoun = array_rand($noun);
+	
+	return $adjective[$randomAdj] . " " . $noun[$randomNoun];
 }
-
-
-randomElement($adjectiveArray, $nounArray);
-
-
-function randomNameGen()
-{
-
-
-
-}
-
-
-
-
-
-
-
 
 
 ?>
+
+
+<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Server Name Generator</title>
+		<style type="text/css">
+			
+			body{
+				text-align: center;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div>
+			<h1>Random Server Name Generator</h1>	
+		</div>
+
+		<div>
+			<h2>Your server name is....</h2>	
+		</div>
+		<div>
+			<h3><?php echo randomElement($adjectiveArray, $nounArray);?></h3>
+		</div>
+	</body>
+</html>
+
+
+
+
+
+
