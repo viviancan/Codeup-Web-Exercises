@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 		<!-- Custom CSS -->
-		<link rel="stylesheet" type="text/css" href="/css/weathermap_cs.css">
+		<link rel="stylesheet" type="text/css" href="/css/darksky_weather.css">
 
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway" rel="stylesheet">
 
@@ -26,10 +26,10 @@
 		<div class="container">
 			<div class="row">
 				<input id="searchBox"  type="text" placeholder=" Enter Address, City , or Zip Code" autofocus>
-
 			</div>
+
 			<div class="row mobile">
-				<button id="submit">Submit</button>
+				<button class="btn btn-default" id="submit">Submit</button>
 			</div>
 
 		</div>
@@ -40,11 +40,18 @@
 		</div>
 			
 		<div class="container">
-			<div class="col-sm-6" id="map"></div>
+			<div class="row">
+				<div class="col-sm-6" id="map"></div>
+			</div>
+			<div class="row">
+				<a href="https://darksky.net/poweredby/" target="_blank"><h5>Powered by Dark Sky</h5></a>				
+			</div>
+
 		</div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<script src="/js/skycons.js"></script>
 		<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcBATRCaAV7NOyDNE4-yKaRiwX3rtuGvk"></script> -->
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcBATRCaAV7NOyDNE4-yKaRiwX3rtuGvk&libraries=places"></script>
 		

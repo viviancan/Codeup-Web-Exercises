@@ -6,29 +6,21 @@ body{
 	display: none;
 }
 
-@media all and (max-width: 720px) {
+@media all and (max-width: 769px) {
 	.mobile{
 		display: block;
 	}
 }
 
-/*@media all and (max-width: 479px) {
-	.mobile{
-		display: block;
-	}
-}*/
-
 .header{
-	/*background-color: #AA4465;*/
-	background-image: linear-gradient(90deg, #9A98B5, #FFFFFF);
+	background-image: linear-gradient(90deg, #9a98b5, #FFFFFF);
 	color: white;
 	font-family: 'Raleway', sans-serif;
 	font-size: 50px;
 	text-align: left;
 	padding: 10px;
 	margin-bottom: 20px;
-
-
+	letter-spacing: 5px;
 }
 
 #searchBox{
@@ -41,40 +33,39 @@ body{
 	text-align: center;
 }
 
-#button{
+#submit{
 }
 
-
 .col-md-4{
-	background-color: #DDFFF7;
-	box-shadow: inset 0 0 5px #AA4465;
+	background-color: #FFFFFF;
+	box-shadow: inset 0 0 5px #9a98b5;
 	padding: 15px 15px;
 	font-size: 16px;
 	font-family: 'Open Sans', sans-serif;
 	margin-bottom: 30px;
-
-
+	height: 300px;
 }
 
+.col-md-4:hover{
+	background-color: rgb(232, 231, 231);
+}
 
 .container{
 	text-align: center;
 }
-
-/*h1{
-	text-align: center;
-}*/
 
 h3{
 	text-align: left;
 	font-family: 'Raleway', sans-serif;
 }
 
+h5{
+	font-family: 'Raleway', sans-serif;
+	margin: 20px;
+}
 
 #map {
 	width: 100%;
 	height: 400px;
 	background-color: grey
-	
-
 }
