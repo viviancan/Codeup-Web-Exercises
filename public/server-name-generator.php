@@ -5,16 +5,29 @@ $adjectiveArray = array('New', 'Good', 'Important', 'Bad', 'Best', 'Purple', 'Hu
 $nounArray = array('Book', 'Eye', 'Mother', 'Money', 'Night', 'World', 'Study', 'Time', 'School', 'System');
 
 
-function randomElement($adjective, $noun)
+// function randomElement($adjective, $noun)
+// {
+
+// 	$randomAdj = array_rand($adjective);
+	
+// 	$randomNoun = array_rand($noun);
+	
+// 	return $adjective[$randomAdj] . " " . $noun[$randomNoun];
+// }
+
+
+function randomElement($input)
 {
 
-	$randomAdj = array_rand($adjective);
+	$random = array_rand($input);
 	
-	$randomNoun = array_rand($noun);
-	
-	return $adjective[$randomAdj] . " " . $noun[$randomNoun];
+	return $input[$random];
 }
 
+function randomServerName($adjective, $noun)
+{
+	return randomElement($adjective) . " " . randomElement($noun);
+}
 
 ?>
 
@@ -40,7 +53,7 @@ function randomElement($adjective, $noun)
 			<h2>Your server name is....</h2>	
 		</div>
 		<div>
-			<h3><?php echo randomElement($adjectiveArray, $nounArray);?></h3>
+			<h3><?php echo randomServerName($adjectiveArray, $nounArray);?></h3>
 		</div>
 	</body>
 </html>
