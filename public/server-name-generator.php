@@ -17,9 +17,9 @@ function randomServerName($adjective, $noun)
 function pageController()
 {
 
-	$adjectiveArray = ['New', 'Good', 'Important', 'Bad', 'Best', 'Purple', 'Human', 'Hard', 'Greatest', 'Other'];
+	$adjectiveArray = ['New', 'Good', 'Important', 'Bad', 'Best', 'Purple', 'Human', 'Hard', 'Greatest', 'Other', 'Glittery', 'Loud', 'Dead', 'Spooky', 'Funny', 'Ugly'];
 
-	$nounArray = ['Book', 'Eye', 'Mother', 'Money', 'Night', 'World', 'Study', 'Time', 'School', 'System'];
+	$nounArray = ['Book', 'Eye', 'Mother', 'Money', 'Night', 'World', 'Study', 'Time', 'School', 'System' , 'Dog', 'Grave', 'President' , 'Chair'];
 
 	$data = [
 		'serverName' => randomServerName($adjectiveArray, $nounArray)
@@ -43,11 +43,16 @@ extract(pageController());
 		<!-- Bootstrap Core CSS -->
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+
 		<style type="text/css">
 			
 			body{
 				background-color: turquoise;
 				text-align: center;
+				font-family: 'Roboto Condensed', sans-serif;
+				letter-spacing: 5px;
+
 			}
 			h1{
 				padding-bottom: 50px;
