@@ -1,46 +1,66 @@
 <?php 
-$favoriteThings = array("Puppies", "Reading", "Soccer", "Pizza", "The Flash");
 
 
+function pageController()
+{
+	$data = array();
 
+	$favoriteThings = array("Puppies", "Reading", "Soccer", "Pizza", "The Flash");
 
+	$data['favoriteThings'] = $favoriteThings;
 
+	return $data;
 
+}
 
+extract(pageController());
 
  ?>
-
-
-
-
-
 
 
 <!DOCTYPE html>
 	<html>
 	<head>
 		<title>Favorite Things PHP</title>
-		<style type="text/css">
-			tr:nth-child(even) { 
-				background-color: #D3D3D3;
-			}
 
+
+	 	<!-- Bootstrap Core CSS -->
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<style type="text/css">
+			body{
+				text-align: center;
+			}
 
 		</style>
 	</head>
+
 	<body>
+
 		<h1>My Favorite Things</h1>
-		<table>
-			<?php foreach ($favoriteThings as $favoriteThing) { ?>
+		<table class="table table-striped">
+			<?php foreach ($favoriteThings as $favoriteThing) : ?>
 
 				<tr>	
 					<td>
-						 <?php echo $favoriteThing; ?>
+						 <?= $favoriteThing; ?>
 					</td>
 				</tr>
 
-			<?php } ?>
+			<?php endforeach; ?>
 							
 		</table>
 	</body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
