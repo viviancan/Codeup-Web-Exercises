@@ -43,10 +43,11 @@ extract(pageController());
 			#counter{
 				border: black solid;
 				padding: 50px;
+				font-weight: bold;
 			}
 
 			.controls{
-				font-size: 75px;
+				font-size: 50px;
 				margin-top: 50px;
 			}
 
@@ -69,16 +70,16 @@ extract(pageController());
 	 	<div class='container'>
 
 	 		<div class='row' id='counter'>
-	 			PONG <?php echo $count ?>
+	 			PONG <?= $count ?>
 	 		</div>
 
 			<div class='row'> 
 				<div id='hit'>
-					<a href="http://codeup.dev/ping.php?hit=true&count=<?php echo ++$count?>">HIT</a>
+					<a href="http://codeup.dev/ping.php?hit=true&count=<?= ++$count?>">HIT</a>
 				</div>
 
 				<div>
-					<a href="?hit=true&count= <?php echo $count = 0 ?>">MISS
+					<a href="?hit=true&count=0">MISS
 					</a>
 				</div>
 			</div>

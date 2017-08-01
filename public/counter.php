@@ -35,7 +35,7 @@ extract(pageController());
 			body{
 				font-family: 'Roboto Condensed', sans-serif;
 				text-align: center;
-				font-size: 100px;
+				font-size: 75px;
 				letter-spacing: 10px;
 			}
 
@@ -45,7 +45,7 @@ extract(pageController());
 			}
 
 			.controls{
-				font-size: 75px;
+				font-size: 50px;
 				margin-top: 50px;
 			}
 
@@ -64,16 +64,16 @@ extract(pageController());
 
 		<div class='container'>
 			<div class='row col-xs-12' id='counter'>
-				COUNT: <?php echo $count ?>
+				COUNT: <?= $count ?>
 			</div>
 
 			<div class='row'>
 				<div class='controls col-xs-6'>
-					<a href="?count=<?php echo ++$count ?>" >up</a>
+					<a href="?count=<?= ++$count ?>">up</a>
 				</div>
 
 				<div class='controls col-xs-6'>
-					<a href="?count=<?php echo $count - 2 ?>" >down</a>
+					<a href="?count=<?= $count - 2 ?>" >down</a>
 				</div>
 				
 			</div>
