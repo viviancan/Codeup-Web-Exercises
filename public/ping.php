@@ -9,6 +9,8 @@ function pageController()
 
 	return $data; 
 
+
+
 }
 
 extract(pageController());
@@ -68,16 +70,16 @@ extract(pageController());
 	 	<div class='container'>
 
 	 		<div class='row' id='counter'>
-	 			COUNTER: <?php echo $count ?>
+	 			PING <?php echo $count ?>
 	 		</div>
 
 			<div class='row'> 
 				<div id='hit'>
-					<a href="http://codeup.dev/pong.php?count=<?php echo ++$count?>">HIT</a>
+					<a href="http://codeup.dev/pong.php?hit=true&count=<?php echo ++$count?>">HIT</a>
 				</div>
 
 				<div>
-					<a href="?count= <?php echo $count = 0 ?>">MISS
+					<a href="?miss=true&count= <?php echo $count = 0 ?>">MISS
 					</a>
 				</div>
 			</div>
