@@ -16,13 +16,26 @@ function pageController()
 	];
 
 
-	if($username == 'guest' && $password == 'password'){
-		header("Location:http://codeup.dev/authorized.php");
-		die();
-	}else{
-		if(!empty($_POST)){
-			$data['message'] = "login failed";
+	// if($username == 'guest' && $password == 'password'){
+	// 	header("Location:http://codeup.dev/authorized.php");
+	// 	die();
+	// }else{
+	// 	if(!empty($_POST)){
+	// 		$data['message'] = "login failed";
+	// 	}
+	// }
+
+
+
+	if(!empty($_POST)) {
+
+		if($username == "guest" && $password == 'password'){
+			header("Location:http://codeup.dev/authorized.php");
+			die();
+		} else {
+			$data['message'] = "Login Failed";
 		}
+
 	}
 
 	return $data;
