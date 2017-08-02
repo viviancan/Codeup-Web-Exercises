@@ -1,5 +1,7 @@
 <?php 
 
+session_start();
+
 function pageController()
 {
 
@@ -16,26 +18,21 @@ function pageController()
 	];
 
 
-	// if($username == 'guest' && $password == 'password'){
-	// 	header("Location:http://codeup.dev/authorized.php");
-	// 	die();
-	// }else{
-	// 	if(!empty($_POST)){
-	// 		$data['message'] = "login failed";
-	// 	}
-	// }
-
-
-
 	if(!empty($_POST)) {
 
 		if($username == "guest" && $password == 'password'){
+			$_SESSION['logged_in_user'] = $username; 
 			header("Location:http://codeup.dev/authorized.php");
 			die();
 		} else {
 			$data['message'] = "Login Failed";
 		}
 
+	}
+
+	if(isset($_SESSION['logged_in_user'])){
+		header("Location:http://codeup.dev/authorized.php");
+		die();
 	}
 
 	return $data;
