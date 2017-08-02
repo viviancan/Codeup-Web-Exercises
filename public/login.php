@@ -1,21 +1,31 @@
 <?php 
 
-
-
-var_dump($_POST);
-
-
 function pageController()
 {
 
 	$data = [];
 
-	$loginInfo = (isset($_POST))
+	$username = (isset($_POST['username'])) ? $_POST['username'] : "undefined"; 
+
+	$password = (isset($_POST['password'])) ? $_POST['password'] : "undefined"; 
+
+	$data = [
+		'username' => $username,
+		'password' => $password,
+		'message' => ""
+	];
 
 
+	if($username == 'guest' && $password == 'password'){
+		header("Location:http://codeup.dev/authorized.php");
+		die();
+	}else{
+		if(!empty($_POST)){
+			$data['message'] = "login failed";
+		}
+	}
 
 	return $data;
-
 }
 
 extract(pageController());
@@ -32,6 +42,7 @@ extract(pageController());
 
 		<h1>Please enter your login information:</h1>
 
+
 		<form method="post">
 
 			<label for="username">Username: </label>
@@ -43,8 +54,9 @@ extract(pageController());
 			<button>Submit</button>
 			
 
-
 		</form>
+
+		<h2> <?= $message ?></p></h2>
 	 
 	</body>
 </html>
