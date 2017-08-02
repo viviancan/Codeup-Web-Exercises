@@ -63,7 +63,6 @@ $allMovies = [
 		'genre' => ['adventure', 'sci-fi']
 	],
 ];
-var_dump($_GET);
 
 function pageController($allMovies)
 {
@@ -125,54 +124,91 @@ extract(pageController($allMovies));
 	<html>
 	<head>
 		<title>PHP GET PRACTICE</title>
+
+	 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+
+		<style type="text/css">
+			#forms{
+				text-align: center;
+				padding: 40px;
+			}
+
+			#links{
+				text-align: center;
+			}
+			h1{
+				font-family: 'Roboto Condensed', sans-serif;
+				font-size: 50px;
+				letter-spacing: 3px;
+
+			}
+
+
+
+		</style>
 	</head>
 	<body>
-		<section class="form" >
-			<form method="get" action="#">
+		<div class="container">
 
-				Movie Title: <input type="text" name="title" id="title">
+			<h1>Welcome to Movie Lister</h1>
 
-				<button type="submit">Search</button>
+			<div class="row" id="forms">
+				<form method="get" action="#" class="col-xs-6">
 
-			</form>
+					Movie Title: <input type="text" name="title" id="title">
 
-				<form method="get" action="#">
+					<button type="submit">Search</button>
 
-				Genre: <input type="text" name="genre" id="genre">
+				</form>
 
-				<button type="submit">Search</button>
+				<form method="get" action="#" class="col-xs-6">
 
-			</form>
-			
-		</section>
+					Genre: <input type="text" name="genre" id="genre">
 
-		<section class="links">
+					<button type="submit">Search</button>
 
-		<a href="ownMovie.php">All movies</a>
-		<br>
-		<a href="ownMovie.php?release">Released since 2000</a>
-		<br>
-		<a href="ownMovie.php?genre=comedy">Comedy movies</a>
-		<br>
-		<a href="ownMovie.php?genre=sci-fi">Sci-Fi movies</a>
-			
-		</section>
-
-
-		<section class="movies">
-			
-			<div> 
-				<?php foreach($movies as $movie): ?>
-					<div>
-						<h3>Title: <?= $movie['title'];  ?></h3>
-						<p>Released: <?= $movie['release'] ?></p>
-						<p>Rating: <?= $movie['rating'] ?></p>
-						<p>Genre: <?= implode(", ", $movie['genre']) ?></p>	
-					</div>					 
-				<?php endforeach; ?>	  			
+				</form>
 			</div>
-		
-		</section>
+				
+
+			<div class="row" id="links">
+
+				<a href="ownMovie.php">All Movies |</a>
+			
+				<a href="ownMovie.php?release">Released since 2000 |</a>
+			
+				<a href="ownMovie.php?genre=comedy">Comedy Movies |</a>
+			
+				<a href="ownMovie.php?genre=sci-fi">Sci-Fi Movies</a>
+				
+			</div>
+
+
+			<section class="row movies">
+				
+				<div> 
+					<?php foreach($movies as $movie): ?>
+						<div>
+							<h4>Title: <?= $movie['title'];  ?></h4>
+							<p>Released: <?= $movie['release'] ?></p>
+							<p>Rating: <?= $movie['rating'] ?></p>
+							<p>Genre: <?= implode(", ", $movie['genre']) ?></p>	
+							<hr>
+						</div>					 
+					<?php endforeach; ?>	  			
+				</div>
+			
+			</section>
+		</div>
+
+
+		<!-- jQuery Version 1.11.1 -->
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+		<!-- Bootstrap Core JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 	</body>
 </html>
