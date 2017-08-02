@@ -185,6 +185,8 @@ extract(pageController($allMovies));
 				
 			</div>
 
+			<hr>
+
 
 			<section class="row movies">
 				
