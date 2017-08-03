@@ -1,99 +1,96 @@
 <?php 
 
-function pageController()
-{
-	
-	$count = (isset($_GET["count"])) ? $_GET["count"] : 0;
+	require "functions.php";
 
-	$data["count"] = $count;
+	function pageController()
+	{
+		
+		// $count = (isset($_GET["count"])) ? $_GET["count"] : 0;
 
-	return $data; 
+		$count = inputHas("count") ? inputGet("count") : 0;
 
-}
+		$data["count"] = $count;
 
-extract(pageController());
+		return $data; 
+	}
 
-
+	extract(pageController());
 
  ?>
 
+<!DOCTYPE html>
 
- <!DOCTYPE html>
-	 <html>
-	 <head>
-	 	<title>PING AND PONG</title>
+	<html>
 
+		<head>
 
-	 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		 	<title>PONG</title>
 
-		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+		 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-		<style type="text/css">
-			.container{
-				margin-top: 75px;
-			}
-			body{
-				font-family: 'Roboto Condensed', sans-serif;
-				text-align: center;
-				font-size: 100px;
-				letter-spacing: 10px;
-				background: turquoise;
-			}
+			<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 
-			#counter{
-				border: black solid;
-				padding: 50px;
-				font-weight: bold;
-			}
+			<style type="text/css">
+				.container{
+					margin-top: 75px;
+				}
+				body{
+					font-family: 'Roboto Condensed', sans-serif;
+					text-align: center;
+					font-size: 100px;
+					letter-spacing: 10px;
+					background: turquoise;
+				}
 
-			.controls{
-				font-size: 50px;
-				margin-top: 50px;
-			}
+				#counter{
+					border: black solid;
+					padding: 50px;
+					font-weight: bold;
+				}
 
-			a{
-				color: #333;
-			}
+				.controls{
+					font-size: 50px;
+					margin-top: 50px;
+				}
 
-			a:hover{
-				color: grey;
-			}
+				a{
+					color: #333;
+				}
 
-		</style>
+				a:hover{
+					color: grey;
+				}
 
+			</style>
 
+		 </head>
 
-	 </head>
-	 <body>
+		 <body>
 
+		 	<div class='container'>
 
-	 	<div class='container'>
+		 		<div class='row' id='counter'>
+		 			PONG <?= escape($count) ?>
+		 		</div>
 
-	 		<div class='row' id='counter'>
-	 			PONG <?= $count ?>
-	 		</div>
+				<div class='row'> 
+					<div id='hit'>
+						<a href="http://codeup.dev/ping.php?hit=true&count=<?= ++$count?>">HIT</a>
+					</div>
 
-			<div class='row'> 
-				<div id='hit'>
-					<a href="http://codeup.dev/ping.php?hit=true&count=<?= ++$count?>">HIT</a>
+					<div>
+						<a href="?hit=true&count=0">MISS</a>
+					</div>
 				</div>
 
-				<div>
-					<a href="?hit=true&count=0">MISS
-					</a>
-				</div>
-			</div>
+		 	</div>
 
-	 	</div>
+			<!-- jQuery Version 1.11.1 -->
+			<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
+			<!-- Bootstrap Core JavaScript -->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		 
+		</body>
 
-
-
-		<!-- jQuery Version 1.11.1 -->
-		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-
-		<!-- Bootstrap Core JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	 
-	 </body>
- </html>
+	</html>
