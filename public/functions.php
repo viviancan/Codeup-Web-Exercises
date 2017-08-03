@@ -97,7 +97,7 @@ function inputGet($key)
 		return $_REQUEST[$key]; 
 
 	} else {
-		return $default;
+		return null;
 	}
 }
 

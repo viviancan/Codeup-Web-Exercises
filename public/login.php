@@ -13,9 +13,9 @@ function pageController()
 
 	// $password = (isset($_POST['password'])) ? $_POST['password'] : "undefined"; 
 
-	$username = inputHas('username') ? inputGet('username') : "undefined";
+	$username = inputGet('username');
 
-	$password = inputHas('password') ? inputGet('password') : "undefined";
+	$password = inputGet('password');
 
 
 	$data = [
