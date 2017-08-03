@@ -130,6 +130,10 @@ extract(pageController($allMovies));
 		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
 
 		<style type="text/css">
+			.movies{
+				padding-left: 30px;
+			}
+
 			#forms{
 				text-align: center;
 				padding: 40px;
@@ -193,7 +197,7 @@ extract(pageController($allMovies));
 				<div> 
 					<?php foreach($movies as $movie): ?>
 						<div>
-							<h4>Title: <?= $movie['title'];  ?></h4>
+							<h4><?= $movie['title'];  ?></h4>
 							<p>Released: <?= $movie['release'] ?></p>
 							<p>Rating: <?= $movie['rating'] ?></p>
 							<p>Genre: <?= implode(", ", $movie['genre']) ?></p>	

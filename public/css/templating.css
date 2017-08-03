@@ -1,7 +1,13 @@
 
+
 body{
-	font-family: 'Raleway', sans-serif
-	
+	font-family: 'Raleway', sans-serif;
+	background: linear-gradient(to right, rgb(31, 28, 44), rgb(146, 141, 171));
+	color: white;
+}
+.navbar{
+	margin-bottom: 0px;
+}
 
 footer {
 	position: absolute;
@@ -46,7 +52,7 @@ li a:hover:not(.active) {
 
 li a.active {
 	color: white;
-	background-color: #5761a4;
+	background-color: rgb(146, 141, 171);
 }
 
 
