@@ -2,7 +2,7 @@
 
 	session_start();
 
-
+	require "functions.php";
 
 	if(!isset($_SESSION['logged_in_user'])){
 		header("Location:http://codeup.dev/login.php");
@@ -26,7 +26,7 @@
 		<div class='container'>
 			<h1>Authorized</h1>
 
-			<h3>Welcome, <?= $username ?>!</h3>
+			<h3>Welcome, <?= escape($username) ?>!</h3>
 
 			<a href="http://codeup.dev/logout.php"> LOGOUT</a>
 		</div>

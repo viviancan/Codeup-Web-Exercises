@@ -2,14 +2,21 @@
 
 session_start();
 
+require "functions.php";
+
 function pageController()
 {
 
 	$data = [];
 
-	$username = (isset($_POST['username'])) ? $_POST['username'] : "undefined"; 
+	// $username = (isset($_POST['username'])) ? $_POST['username'] : "undefined"; 
 
-	$password = (isset($_POST['password'])) ? $_POST['password'] : "undefined"; 
+	// $password = (isset($_POST['password'])) ? $_POST['password'] : "undefined"; 
+
+	$username = inputHas('username') ? inputGet('username') : "undefined";
+
+	$password = inputHas('password') ? inputGet('password') : "undefined";
+
 
 	$data = [
 		'username' => $username,
@@ -69,7 +76,7 @@ extract(pageController());
 
 		</form>
 
-		<h2> <?= $message ?></p></h2>
+		<h2> <?= escape($message) ?></p></h2>
 
 
 
