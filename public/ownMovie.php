@@ -1,5 +1,7 @@
 <?php
 
+require_once "functions.php"; 
+
 $allMovies = [
 	[
 		'title' => 'The Godfather',
@@ -64,10 +66,39 @@ $allMovies = [
 	],
 ];
 
+function getMoviesByGenre($genre, $allMovies)
+{
+	$movies = [];
+
+	foreach($allMovies as $movie){
+		if(in_array($genre, $movie['genre'])){
+			$movies[] = $movie;
+		}
+	}
+	return $movies;
+}
+
+function getMoviesByTitle($title, $allMovies)
+{
+	$movies = [];
+
+	foreach($allMovies as $movie){
+		if(stripos($movie['title'], $title) !== false){
+			$movies[] = $movie;
+		}
+	}
+	return $movies;
+}
+
+
 function pageController($allMovies)
 {
 
 	$data = [];
+
+	$genre = inputGet('genre');
+	$title = inputGet('title');
+
 
 	if(isset($_GET['genre'])){
 
