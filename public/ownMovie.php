@@ -98,49 +98,74 @@ function pageController($allMovies)
 
 	$genre = inputGet('genre');
 	$title = inputGet('title');
+	$release = inputGet('release');
 
+	if(!empty($genre) && empty($title)) {
+		$data['movies'] = getMoviesByGenre($genre, $allMovies);
 
-	if(isset($_GET['genre'])){
-
-		$genre = $_GET['genre'];
-
-		$movies = []; 
-
-		foreach ($allMovies as $movie) {
-			if(in_array($genre, $movie['genre'])){
-				$movies[] = $movie;
-			}
-		}
-
-		$data['movies'] = $movies;
-
-	} elseif(isset($_GET['release'])){
-		$release = $_GET['release'];
-		$movies = [];
-
-		foreach ($allMovies as $movie) {
-			if($movie['release'] > 2000){
-				$movies[] = $movie;
-			}
-		}
-
-		$data['movies'] = $movies;
+	} elseif (!empty($title) && empty($genre)) {
+		$data['movies'] = getMoviesByTitle($title, $allMovies);
 		
-	} elseif(isset($_GET['title'])){
-		$title = $_GET['title'];
-		$movies = [];
-
-		foreach ($allMovies as $movie) {
-			if($movie['title'] == $title){
-				$movies[] = $movie;
-			}	
-		}
-
-		$data['movies'] = $movies;
-
-	} else{
+	} elseif (!empty($title) && !empty($genre)) {		
+		$moviesWithGenre = getMoviesByGenre($genre, $allMovies);
+		$moviesWithGenreAndTitle = getMoviesByTitle($title, $moviesWithGenre);
+		$data['movies'] = $moviesWithGenreAndTitle;
+		
+	} else {
 		$data['movies'] = $allMovies;
 	}
+
+	if(!empty($release)){
+		$movies = [];
+
+		foreach($allMovies as $movie){
+			if($movie['release'] > $release){
+				$movies[] = $movie;
+			}
+		}
+		$data['movies'] = $movies;
+	}
+	// if(isset($_GET['genre'])){
+
+	// 	$genre = $_GET['genre'];
+
+	// 	$movies = []; 
+
+	// 	foreach ($allMovies as $movie) {
+	// 		if(in_array($genre, $movie['genre'])){
+	// 			$movies[] = $movie;
+	// 		}
+	// 	}
+
+	// 	$data['movies'] = $movies;
+
+	// } elseif(isset($_GET['release'])){
+	// 	$release = $_GET['release'];
+	// 	$movies = [];
+
+	// 	foreach ($allMovies as $movie) {
+	// 		if($movie['release'] > 2000){
+	// 			$movies[] = $movie;
+	// 		}
+	// 	}
+
+	// 	$data['movies'] = $movies;
+		
+	// } elseif(isset($_GET['title'])){
+	// 	$title = $_GET['title'];
+	// 	$movies = [];
+
+	// 	foreach ($allMovies as $movie) {
+	// 		if($movie['title'] == $title){
+	// 			$movies[] = $movie;
+	// 		}	
+	// 	}
+
+	// 	$data['movies'] = $movies;
+
+	// } else{
+	// 	$data['movies'] = $allMovies;
+	// }
 
 	return $data; 
 }
@@ -194,11 +219,11 @@ extract(pageController($allMovies));
 
 					Movie Title: <input type="text" name="title" id="title">
 
-					<button type="submit">Search</button>
+<!-- 					<button type="submit">Search</button>
 
 				</form>
 
-				<form method="get" action="#" class="col-xs-6">
+				<form method="get" action="#" class="col-xs-6"> -->
 
 					Genre: <input type="text" name="genre" id="genre">
 
@@ -212,7 +237,7 @@ extract(pageController($allMovies));
 
 				<a href="ownMovie.php">All Movies |</a>
 			
-				<a href="ownMovie.php?release">Released since 2000 |</a>
+				<a href="ownMovie.php?release=2000">Released since 2000 |</a>
 			
 				<a href="ownMovie.php?genre=comedy">Comedy Movies |</a>
 			
