@@ -1,7 +1,8 @@
 <?php 
 
-	require_once "functions.php";
+	// require_once "functions.php";
 	require_once "../Input.php";
+	require_once "functions.php";
 
 	function pageController()
 	{
@@ -10,7 +11,7 @@
 
 		// $count = inputHas("count") ? inputGet("count") : 0;
 
-		$count = Input::get("count");
+		$count = Input::get("count", 0);
 
 		$data["count"] = $count;
 
@@ -69,7 +70,7 @@
 		 	<div class='container'>
 
 		 		<div class='row' id='counter'>
-		 			PING <?= escape($count) ?>
+		 			PING <?= escape($count)?>
 		 		</div>
 
 				<div class='row'> 

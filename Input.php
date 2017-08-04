@@ -22,15 +22,18 @@ class Input
 	 */
 	public static function get($key, $default = null)
 	{
-		if (inputHas($key)){
+		if (self::has($key)){
 
 			return $_REQUEST[$key]; 
 
 		} else {
-			return null;
+			return $default;
 		}
 		
 	}
+
+
+
 
 	///////////////////////////////////////////////////////////////////////////
 	//                      DO NOT EDIT ANYTHING BELOW!!                     //

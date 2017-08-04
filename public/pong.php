@@ -11,7 +11,7 @@
 
 		// $count = inputHas("count") ? inputGet("count") : 0;
 
-		$count = Input::get("count");
+		$count = Input::get("count", 0);
 
 		$data["count"] = $count;
 
@@ -83,7 +83,7 @@
 					</div>
 
 					<div>
-						<a href="?hit=true&count=0">MISS</a>
+						<a href="?miss=true&count=0">MISS</a>
 					</div>
 				</div>
 
