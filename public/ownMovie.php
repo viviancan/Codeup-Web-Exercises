@@ -110,7 +110,7 @@ function pageController($allMovies)
 		$moviesWithGenre = getMoviesByGenre($genre, $allMovies);
 		$moviesWithGenreAndTitle = getMoviesByTitle($title, $moviesWithGenre);
 		$data['movies'] = $moviesWithGenreAndTitle;
-		
+
 	} else {
 		$data['movies'] = $allMovies;
 	}
@@ -205,12 +205,21 @@ extract(pageController($allMovies));
 
 			}
 
+			#stars{
+				background-image: url(/img/star_strings.png);
+				background-repeat: repeat-x;
+				background-size: 300px 300px;
+				height: 300px;
+			}
+
 
 
 		</style>
 	</head>
 	<body>
 		<div class="container">
+			<div class='row' id='stars'>
+			</div>
 
 			<h1>Welcome to Movie Lister</h1>
 
