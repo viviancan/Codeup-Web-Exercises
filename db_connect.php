@@ -1,6 +1,5 @@
 <?php 
 
-require_once "parks_login.php";
 
 $dbc = new PDO("mysql:host=". HOST . ";dbname=" . DBNAME, USERNAME, PASSWORD);
 
