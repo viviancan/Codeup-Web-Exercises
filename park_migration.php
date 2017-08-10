@@ -3,9 +3,9 @@
 require_once 'parks_login.php';
 require_once 'db_connect.php';
 
-$dbc->exec("DROP TABLE IF EXISTS parksInfo");
+$dbc->exec("DROP TABLE IF EXISTS national_parks");
 
-$query = "CREATE TABLE IF NOT EXISTS parksInfo (
+$query = "CREATE TABLE IF NOT EXISTS national_parks (
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT, 
 	name VARCHAR(250),
 	location VARCHAR(250),

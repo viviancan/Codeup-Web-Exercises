@@ -3,8 +3,10 @@
 require_once 'parks_login.php';
 require_once 'db_connect.php';
 
+$dbc->exec("TRUNCATE national_parks");
 
-$statement = "INSERT INTO parksInfo(name, location, date_established, area)
+
+$statement = "INSERT INTO national_parks(name, location, date_established, area)
 
 VALUES
 ('Acadia','Maine','1919-02-26',47389.67),
