@@ -3,19 +3,24 @@
 session_start();
 
 require_once "functions.php";
+require_once "../Auth.php";
+require_once "../Input.php"
 
 function pageController()
 {
 
 	$data = [];
 
-	// $username = (isset($_POST['username'])) ? $_POST['username'] : "undefined"; 
+	if(Auth::check()){
+		header("Location: authorized.php");
+		die();
+	}
 
-	// $password = (isset($_POST['password'])) ? $_POST['password'] : "undefined"; 
 
-	$username = inputGet('username');
 
-	$password = inputGet('password');
+	$username = Input::get('username');
+
+	$password = Input::get('password');
 
 
 	$data = [
@@ -27,12 +32,11 @@ function pageController()
 
 	if(!empty($_POST)) {
 
-		if($username == "guest" && $password == 'password'){
-			$_SESSION['logged_in_user'] = $username; 
-			header("Location:http://codeup.dev/authorized.php");
+		if(Auth::attempt($username, $password)){
+			header("Location: authorized.php");
 			die();
-		} else {
-			$data['message'] = "Login Failed";
+		}else {
+			$data['message'] = "invalid login!";
 		}
 
 	}

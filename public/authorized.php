@@ -3,7 +3,16 @@
 	session_start();
 
 	require "functions.php";
+	require "../Auth.php";
 
+function pageController(){
+
+
+
+
+
+	
+}
 	if(!isset($_SESSION['logged_in_user'])){
 		header("Location:http://codeup.dev/login.php");
 		die();

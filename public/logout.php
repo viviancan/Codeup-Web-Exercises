@@ -1,16 +1,11 @@
 <?php 
-
 session_start();
 
-function clearSession()
-{
+require_once "../Auth.php";
 
-	session_unset();
+Auth::logout();
 
-	session_regenerate_id(true);
-
-}
-
-clearSession();
 header("Location:http://codeup.dev/login.php");
 die();
+
+?>
