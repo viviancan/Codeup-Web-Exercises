@@ -12,6 +12,9 @@ $query = "CREATE TABLE IF NOT EXISTS np_details (
 	date_established DATE NOT NULL,
 	area FLOAT(14, 2) NOT NULL,
 	home_url VARCHAR(250) NOT NULL,
+	tagline VARCHAR (250),
+	description VARCHAR(2000),
+	type VARCHAR(250) NOT NULL, 
 	PRIMARY KEY (id)
 );";
 

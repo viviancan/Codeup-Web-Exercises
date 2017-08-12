@@ -16,6 +16,8 @@
 
 		$query = "SELECT * FROM np_details LIMIT $limit OFFSET $offset ;";
 
+		$queryTotal = "SELECT * FROM np_details;";
+
 		$stmt = $dbc->query($query);
 
 		$data = [
@@ -45,56 +47,74 @@
 		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
 		crossorigin="anonymous">
 
+		<link rel="stylesheet" type="text/css" href="/css/national_parks.css">
+
 	</head>
 	<body>	
 
 	<div class='container'>
 
-		<a href="http://codeup.dev/national_parks.php"><h1 id='heading'>NATIONAL PARKS</h1></a>
+		<?php if($page == 1) :?>
+			<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+					<li data-target="#myCarousel" data-slide-to="2"></li>
+				</ol>
 
-		<?php foreach ($results as $result): ?>
+				<div class="carousel-inner">
+					<div class="item active">
+						<img src="/img/man_sunset.jpeg" alt="Los Angeles">
+					</div>
 
-			<a href="https://www.nps.gov/<?= $result[5]?>" target="_blank"><h3> <?= $result[1] ?></h3></a>
-			<p> Location: <?= $result[2] ?></p>
-			<p> Date Established: <?= $result[3] ?></p>
-			<p> Area: <?= $result[4] ?></p>
-			<hr>
-		<?php endforeach ?>
+					<div class="item">
+						<img src="/img/man_sunset.jpeg" alt="Chicago">
+					</div>
 
-		
-		<?php if($page > 1) :?>
-			<a href='?page=<?=$page-1?>'><button>Previous</button></a>
+					<div class="item">
+						<img src="/img/man_sunset.jpeg" alt="New York">
+					</div>
+				</div>
+			</div>
 		<?php endif ?>
+		<header>
+			<div id='heading'>
+				<a href="http://codeup.dev/national_parks.php"><h1 id='heading'>NATIONAL PARKS</h1></a>
+				<input type="text" name="search">	
+			</div>	
+		</header>
 
-		<?php if($page < 15):?>
-			<a href='?page=<?=$page+1?>'><button>Next</button></a>
-		<?php endif ?>
+		<hr>
+
+		<div id="map_details">
+			<?php foreach ($results as $result): ?>
+
+				<a href="https://www.nps.gov/<?= $result[5]?>" target="_blank"><h3> <?= $result[1] ?></h3></a>
+				<h4>"<?= $result[6] ?>"</h4>
+				<p><?= $result[7] ?></p>
+				<p> Location: <?= $result[2] ?></p>
+				<?php $date = strtotime($result[3])?>
+				<p> Date Established: <?= date("F j, Y", $date) ?></p>
+				<p> Area: <?= $result[4] ?> acres</p>
+				<hr>
+			<?php endforeach ?>
+		</div>
 
 
-		<footer>
-				<a href="?page=1">1</a>
-				<a href="?page=2">2</a>
-				<a href="?page=3">3</a>
-				<a href="?page=4">4</a>
-				<a href="?page=5">5</a>
-				<a href="?page=6">6</a>
-				<a href="?page=7">7</a>
-				<a href="?page=8">8</a>
-				<a href="?page=9">9</a>
-				<a href="?page=10">10</a>
-				<a href="?page=11">11</a>
-				<a href="?page=12">12</a>
-				<a href="?page=13">13</a>
-				<a href="?page=14">14</a>
-				<a href="?page=15">15</a>
 
-				<!-- <?php foreach ($results as $result):?>
-					<a href='?page=<?=$page+1?>'><?=$page ?></a>
-				<?php endforeach ?> -->
-				<br>
+		<div class='container'>
+			
+			<?php if($page > 1) :?>
+				<a href='?page=<?=$page-1?>'><button>Previous</button></a>
+			<?php endif ?>
+
+			<?php if($page < 15):?>
+				<a href='?page=<?=$page+1?>'><button>Next</button></a>
+			<?php endif ?>
+
 				<a href="http://codeup.dev/national_parks.php"><button>Home</button></a>
 		
-		</footer>
+		</div>
 
 
 
