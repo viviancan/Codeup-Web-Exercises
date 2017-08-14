@@ -49,8 +49,19 @@
 	}
 
 
-	function showAllParks($dbc){
-		
+	function getAllParks($dbc, $limit =2, $offset = 0){
+
+		$query = "SELECT * FROM np_details ORDER BY name LIMIT :limit OFFSET :offset";
+
+		$stmt = $dbc->prepare($query);
+
+		$stmt->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
+		$stmt->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
+
+		$stmt->execute();
+
+		$rows = $stmt->fetchALL(PDO::FETCH_NUM); 
+		return $rows;
 
 	}
 
@@ -60,21 +71,28 @@
 		$data = [];
 
 
-		$limit = 4;
-		$page = Input::get('page',1);
-		$offset = ($page - 1) * $limit; 
+		// $limit = 4;
+		// $page = Input::get('page',1);
+		// $offset = ($page - 1) * $limit; 
 
-		$query = "SELECT * FROM np_details ORDER BY name LIMIT :limit OFFSET :offset";
-		$stmt = $dbc->prepare($query);
-		$stmt->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
-		$stmt->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
-		$stmt->execute();
+		// $query = "SELECT * FROM np_details ORDER BY name LIMIT :limit OFFSET :offset";
+		// $stmt = $dbc->prepare($query);
+		// $stmt->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
+		// $stmt->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
+		// $stmt->execute();
+
+
+
+		$page = Input::get('page', 1);
+		$recordsPerPage = Input::get('recordsPerPage', 4);
+		$results = getAllParks($dbc, $recordsPerPage, (($page - 1) * $recordsPerPage));
 
 		$data = [
 
-			'results' => $stmt->fetchALL(PDO::FETCH_NUM),
+			'results' => $results,
 			'page' => $page,
-			'parksCount' => getTotalCount($dbc)
+			'parksCount' => getTotalCount($dbc),
+			'recordsPerPage' => $recordsPerPage
 
 		];
 
