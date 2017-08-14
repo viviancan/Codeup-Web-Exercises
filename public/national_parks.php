@@ -169,9 +169,9 @@
 
 				<button type="button" class="btn btn-primary btn-lg">View All Results</button>
 
-				<a href=""><button type="button" class="btn btn-primary btn-lg">View 4 per page</button></a>
+				<a href="?page=<?=$page?>&recordsPerPage=4"><button type="button" class="btn btn-primary btn-lg">View 4 per page</button></a>
 
-				<button type="button" class="btn btn-primary btn-lg">View 6 per page</button>
+				<a href="?page=<?=$page?>&recordsPerPage=6"><button type="button" class="btn btn-primary btn-lg">View 6 per page</button></a>
 
 				<a href="#" data-toggle="modal" data-target="#parkModal"><button type="button" class="btn btn-primary btn-lg">Add a National or State Park</button></a>
 
@@ -236,11 +236,11 @@
 		<div class='container'>
 			
 			<?php if($page > 1) :?>
-				<a href='?page=<?=$page-1?>'><button>Previous</button></a>
+				<a href='?page=<?=$page-1?>&recordsPerPage=<?=$recordsPerPage?>'><button>Previous</button></a>
 			<?php endif ?>
 
 			<?php if($page < 17):?>
-				<a href='?page=<?=$page+1?>'><button>Next</button></a>
+				<a href='?page=<?=$page+1?>&recordsPerPage=<?=$recordsPerPage?>'><button>Next</button></a>
 			<?php endif ?>
 
 				<a href="http://codeup.dev/national_parks.php"><button>Home</button></a>
