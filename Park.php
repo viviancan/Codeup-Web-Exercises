@@ -45,10 +45,13 @@ class Park
      * establish a database connection if we do not have one
      */
     public static function dbConnect() {
+
+        require 'db_connect.php';
+
         if (! is_null(self::$dbc)) {
             return;
         }
-        self::$dbc = require 'dbc.php';
+        self::$dbc = $dbc;
     }
 
     /**

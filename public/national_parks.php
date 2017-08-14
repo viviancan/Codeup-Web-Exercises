@@ -4,7 +4,7 @@
 	require_once __DIR__ . '/../db_connect.php';
 	require_once __DIR__ . '/../Input.php';
 
-	print_r($_POST);
+	var_dump($_POST);
 
 
 	function addParkToDatabase($dbc){
@@ -99,6 +99,7 @@
 		if(!empty($_POST)){
 			addParkToDatabase($dbc);
 			header("Location: http://codeup.dev/national_parks.php");
+			die();
 		}  
 
 		return $data;
@@ -167,7 +168,7 @@
 		<header>
 			<div id='heading'>
 
-				<button type="button" class="btn btn-primary btn-lg">View All Results</button>
+				<a href="?page=<?=$page?>&recordsPerPage=<?=$parksCount ?>"><button type="button" class="btn btn-primary btn-lg">View All Results</button></a>
 
 				<a href="?page=<?=$page?>&recordsPerPage=4"><button type="button" class="btn btn-primary btn-lg">View 4 per page</button></a>
 
@@ -203,8 +204,8 @@
 
 								<label for="type">Park Type</label>
 								<br>
-								<input type="radio" name="type" value="National">National
-								<input type="radio" name="type" value="State">State
+								<input type="radio" name="type" value="National"> National
+								<input type="radio" name="type" value="State"> State
 								<br>
 								<button class="pull-right" type="submit">Submit</button>
 								
@@ -239,7 +240,7 @@
 				<a href='?page=<?=$page-1?>&recordsPerPage=<?=$recordsPerPage?>'><button>Previous</button></a>
 			<?php endif ?>
 
-			<?php if($page < 17):?>
+			<?php if($page < ($parksCount / $recordsPerPage)):?>
 				<a href='?page=<?=$page+1?>&recordsPerPage=<?=$recordsPerPage?>'><button>Next</button></a>
 			<?php endif ?>
 
