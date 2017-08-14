@@ -18,14 +18,14 @@
 		$insert = "INSERT INTO np_details (name, location, date_established, area, type)
 			VALUES(:park_name, :park_location, :date_established, :area, :type)";
 		$stmt = $dbc->prepare($insert);
-		$stmt->bindValue(':park_name', $_POST['park_name'], PDO::PARAM_STR);
-		$stmt->bindValue(':park_location', $_POST['park_location'], PDO::PARAM_STR);
-		$stmt->bindValue(':date_established', $_POST['date_established'], PDO::PARAM_STR);
-		$stmt->bindValue(':area', $_POST['area'], PDO::PARAM_STR);	
-		$stmt->bindValue(':type', $_POST['type'], PDO::PARAM_STR);	
-
+		$stmt->bindValue(':park_name', Input::get('park_name'), PDO::PARAM_STR);
+		$stmt->bindValue(':park_location', Input::get('park_location'), PDO::PARAM_STR);
+		$stmt->bindValue(':date_established', Input::get('date_established'), PDO::PARAM_STR);
+		$stmt->bindValue(':area', Input::get('area'), PDO::PARAM_STR);	
+		$stmt->bindValue(':type', Input::get('type'), PDO::PARAM_STR);	
 
 		$stmt->execute();	
+
 	}
 
 
@@ -57,7 +57,8 @@
 
 		if(!empty($_POST)){
 			addParkToDatabase($dbc);
-		}
+			header("Location: http://codeup.dev/national_parks.php");
+		} 
 
 		return $data;
 	}
@@ -87,74 +88,84 @@
 	<div class='container'>
 
 		<?php if($page == 1) :?>
-			<div id="myCarousel" class="carousel slide" data-ride="carousel">
-				<ol class="carousel-indicators">
-					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-					<li data-target="#myCarousel" data-slide-to="1"></li>
-					<li data-target="#myCarousel" data-slide-to="2"></li>
-				</ol>
-
+			<div class="carousel slide" id="parkSlider" data-ride="">
 				<div class="carousel-inner">
 					<div class="item active">
 						<img src="/img/man_sunset.jpeg" alt="Los Angeles">
+						<div class="carousel-caption">
+							<h1>NATIONAL PARKS DATABASE</h1>
+						</div>
 					</div>
 
 					<div class="item">
 						<img src="/img/man_sunset.jpeg" alt="Chicago">
+						<div class="carousel-caption">
+							<h1>NATIONAL PARKS DATABASE</h1>
+						</div>
 					</div>
 
 					<div class="item">
 						<img src="/img/man_sunset.jpeg" alt="New York">
+						<div class="carousel-caption">
+							<h1>NATIONAL PARKS DATABASE</h1>
+						</div>
 					</div>
 				</div>
+
+				<a class="left carousel-control" href="#parkSlider" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left"></span>
+				</a>
+
+				<a class="right carousel-control" href="#parkSlider" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				</a>			
 			</div>
+
 		<?php endif ?>
 
 		<header>
 			<div id='heading'>
-				<a href="http://codeup.dev/national_parks.php"><h1 id='heading'>NATIONAL PARKS DATABASE</h1></a>
 				<a href="#" data-toggle="modal" data-target="#parkModal"><button type="button" class="btn btn-primary btn-lg">Add a National or State Park</button></a>
 			</div>	
-		</header>
 
+			<div class="modal" id="parkModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button class="close" type="button" data-dismiss="modal">x</button>
+							<h2>Add a National or State Park</h2>
+						</div>
+						<div class="modal-body">
+							<form method="POST">
+								<label for="park_name">Park Name: </label>
+								<input type="text" name="park_name" input="park_name" placeholder="Park Name" autofocus>
+								<br>
+								<label for="park_location">Park Location: </label>
+								<input type="text" name="park_location" input="park_location" placeholder="Park State">
+								<br>
+								<label for="date_established">Date Established: </label>
+								<input type="text" name="date_established" input="date_established" placeholder="YYYY-MM-DD">
+								<br>
+								<label for="area">Park Area: </label>
+								<input type="text" name="area" input="area" placeholder="Park Area">
+								<br>
+								<label for="type">Park Type: </label>
+								<input type="radio" name="type" value="National">National
+								<input type="radio" name="type" value="State">State
 
-		<div class="modal" id="parkModal">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button class="close" type="button" data-dismiss="modal">x</button>
-						<h2>Add a National or State Park</h2>
-					</div>
-					<div class="modal-body">
-						<form method="POST" action="#">
-							<label for="park_name">Park Name: </label>
-							<input type="text" name="park_name" input="park_name" placeholder="Park Name" autofocus>
-
-							<label for="park_location">Park Location: </label>
-							<input type="text" name="park_location" input="park_location" placeholder="Park State">
-
-							<label for="date_established">Date Established: </label>
-							<input type="text" name="date_established" input="date_established" placeholder="YYYY-MM-DD">
-
-							<label for="area">Park Area: </label>
-							<input type="text" name="area" input="area" placeholder="Park Area">
-
-
-							<label for="area">Park Type: </label>
-							<input type="radio" name="type" value="National">National
-							<input type="radio" name="type" value="State">State
-
-							<button type="submit">Submit</button>
-							
-						</form>	
-					</div>
+								<button type="submit">Submit</button>
+								
+							</form>	
+						</div>
+					</div>	
 				</div>	
 			</div>	
-		</div>		
+
+		</header>
 
 		<hr>
 
-		<div id="map_details">
+		<div id="park_details">
 			<?php foreach ($results as $result): ?>
 
 				<a href="https://www.nps.gov/<?= $result[5]?>" target="_blank"><h3> <?= $result[1] ?></h3></a>
@@ -169,14 +180,13 @@
 		</div>
 
 
-
 		<div class='container'>
 			
 			<?php if($page > 1) :?>
 				<a href='?page=<?=$page-1?>'><button>Previous</button></a>
 			<?php endif ?>
 
-			<?php if($page < 15):?>
+			<?php if($page < 17):?>
 				<a href='?page=<?=$page+1?>'><button>Next</button></a>
 			<?php endif ?>
 
