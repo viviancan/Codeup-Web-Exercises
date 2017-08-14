@@ -4,6 +4,12 @@
 	require_once __DIR__ . '/../db_connect.php';
 	require_once __DIR__ . '/../Input.php';
 
+	print_r($_POST);
+
+	function addParkToDatabase($dbc){
+		
+	}
+
 
 	function pageController($dbc) {
 
@@ -14,11 +20,19 @@
 		$page = Input::get('page',1);
 		$offset = ($page - 1) * $limit; 
 
-		$query = "SELECT * FROM np_details LIMIT $limit OFFSET $offset ;";
+		// $query = "SELECT * FROM np_details LIMIT $limit OFFSET $offset ;";			
+
+		$query = "SELECT * FROM np_details LIMIT :limit OFFSET :offset";
+
+		$stmt = $dbc->prepare($query);
+		$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+		$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 
 		$queryTotal = "SELECT * FROM np_details;";
 
-		$stmt = $dbc->query($query);
+		// $stmt = $dbc->query($query);
+
+		$stmt->execute();
 
 		$data = [
 
@@ -80,7 +94,26 @@
 		<header>
 			<div id='heading'>
 				<a href="http://codeup.dev/national_parks.php"><h1 id='heading'>NATIONAL PARKS</h1></a>
-				<input type="text" name="search">	
+
+				<form method="POST" action="#">
+					<label for="park_name">Park Name: </label>
+					<input type="text" name="park_name" input="park_name" placeholder="Park Name" autofocus>
+
+					<label for="park_location">Park Location: </label>
+					<input type="text" name="park_location" input="park_location" placeholder="Park State">
+
+					<label for="date_established">Date Established: </label>
+					<input type="text" name="date_established" input="date_established" placeholder="Date Established">
+
+					<label for="area">Park Area: </label>
+					<input type="text" name="area" input="area" placeholder="Park Area">
+
+					<button type="submit">Submit</button>
+					
+				</form>
+
+
+
 			</div>	
 		</header>
 
