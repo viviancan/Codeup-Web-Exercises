@@ -50,7 +50,7 @@
 		];
 
 		if(!empty($_POST)){
-			addParkToDatabase();
+			addParkToDatabase($dbc);
 		}
 
 		return $data;
@@ -115,7 +115,7 @@
 					<input type="text" name="park_location" input="park_location" placeholder="Park State">
 
 					<label for="date_established">Date Established: </label>
-					<input type="text" name="date_established" input="date_established" placeholder="Date Established YYYY-MM-DD">
+					<input type="text" name="date_established" input="date_established" placeholder="YYYY-MM-DD">
 
 					<label for="area">Park Area: </label>
 					<input type="text" name="area" input="area" placeholder="Park Area">
