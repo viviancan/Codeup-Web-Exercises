@@ -7,7 +7,15 @@
 	print_r($_POST);
 
 	function addParkToDatabase($dbc){
-		
+		$insert = "INSERT INTO np_details (name, location, date_established, area)
+			VALUES(:park_name, :park_location, :date_established, :area)";
+		$stmt = $dbc->prepare($insert);
+		$stmt->bindValue(':park_name', $_POST['park_name'], PDO::PARAM_STR);
+		$stmt->bindValue(':park_location', $_POST['park_location'], PDO::PARAM_STR);
+		$stmt->bindValue(':date_established', $_POST['date_established'], PDO::PARAM_STR);
+		$stmt->bindValue(':area', $_POST['area'], PDO::PARAM_STR);	
+
+		$stmt->execute();	
 	}
 
 
@@ -28,7 +36,7 @@
 		$stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
 		$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
 
-		$queryTotal = "SELECT * FROM np_details;";
+		$queryTotal = "SELECT * FROM np_details";
 
 		// $stmt = $dbc->query($query);
 
@@ -40,6 +48,10 @@
 			'page' => $page
 
 		];
+
+		if(!empty($_POST)){
+			addParkToDatabase();
+		}
 
 		return $data;
 	}
@@ -103,7 +115,7 @@
 					<input type="text" name="park_location" input="park_location" placeholder="Park State">
 
 					<label for="date_established">Date Established: </label>
-					<input type="text" name="date_established" input="date_established" placeholder="Date Established">
+					<input type="text" name="date_established" input="date_established" placeholder="Date Established YYYY-MM-DD">
 
 					<label for="area">Park Area: </label>
 					<input type="text" name="area" input="area" placeholder="Park Area">
