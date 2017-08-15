@@ -189,6 +189,8 @@ $records = [
 
 
 foreach($records as $record){
+
+
 	$park = new Park();
 	$park->name = $record[0];
 	$park->location = $record[1];
@@ -203,13 +205,6 @@ foreach($records as $record){
 }
 
 
-// exec method returns the number of rows affected
-// $rowsInserted = $dbc->exec($statement);
-// if($rowsInserted) {
-// 	echo "$rowsInserted number of rows inserted..." . PHP_EOL;
-// } else {
-// 	echo "nothing was entered into the db";
-// }
 
 
 
