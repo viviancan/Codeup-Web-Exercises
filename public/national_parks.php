@@ -15,6 +15,7 @@
 		$area = Input::get('area');
 		$description = Input::get('description');
 		$type = Input::get('type');
+		$tagline = Input::get('tagline');
 
 		if(!is_numeric($area)) {
 			echo "Area must be numeric";
@@ -22,8 +23,8 @@
 		}
 
 		$insert = "
-			INSERT INTO np_details (name, location, date_established, area, description, type)
-			VALUES(:name, :location, :date_established, :area, :description, :type);";
+			INSERT INTO np_details (name, location, date_established, area, description, type, tagline)
+			VALUES(:name, :location, :date_established, :area, :description, :type, :tagline);";
 
 		$stmt = $dbc->prepare($insert);
 
@@ -33,6 +34,7 @@
 		$stmt->bindValue(':area', $area, PDO::PARAM_STR);	
 		$stmt->bindValue(':description', $description, PDO::PARAM_STR);	
 		$stmt->bindValue(':type', $type, PDO::PARAM_STR);	
+		$stmt->bindValue(':tagline', $tagline, PDO::PARAM_STR);	
 
 		$stmt->execute();	
 
@@ -69,19 +71,6 @@
 	function pageController($dbc) {
 
 		$data = [];
-
-
-		// $limit = 4;
-		// $page = Input::get('page',1);
-		// $offset = ($page - 1) * $limit; 
-
-		// $query = "SELECT * FROM np_details ORDER BY name LIMIT :limit OFFSET :offset";
-		// $stmt = $dbc->prepare($query);
-		// $stmt->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
-		// $stmt->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
-		// $stmt->execute();
-
-
 
 		$page = Input::get('page', 1);
 		$recordsPerPage = Input::get('recordsPerPage', 4);
@@ -198,6 +187,9 @@
 								
 								<label for="area">Park Area</label>
 								<input class="form-control" type="text" name="area" input="area" placeholder="Park Area" required>
+
+								<label for="tagline">Tagline</label>
+								<input class="form-control" type="text" name="tagline" input="tagline" placeholder="tagline" required>
 								
 								<label for="description">Description</label>
 								<textarea class="form-control" type="textarea" rows="3" name="description" placeholder="Please enter description here...." required></textarea>
@@ -217,6 +209,7 @@
 
 		</header>
 
+		<span>Total Records: <?= $parksCount ?></span>
 		<hr>
 
 		<div id="park_details">
