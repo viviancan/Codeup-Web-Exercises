@@ -3,9 +3,11 @@
 	require_once __DIR__ . '/../parks_login.php';
 	require_once __DIR__ . '/../db_connect.php';
 	require_once __DIR__ . '/../Input.php';
-	
+	require_once __DIR__ . '/../Park.php';
+
 
 	var_dump($_POST);
+	var_dump($_GET);
 
 
 	function addParkToDatabase($dbc){
@@ -41,15 +43,16 @@
 
 	}
 
-	function getTotalCount($dbc){
-		$countQuery = "SELECT COUNT(*) FROM np_details";
+	// function getTotalCount($dbc){
+	// 	$countQuery = "SELECT COUNT(*) FROM np_details";
 
-		$stmt = $dbc->query($countQuery);
+	// 	$stmt = $dbc->query($countQuery);
 
-		$count = (int) $stmt->fetchColumn();
+	// 	$count = (int) $stmt->fetchColumn();
 
-		return $count;
-	}
+	// 	return $count;
+
+	// }
 
 
 	function getAllParks($dbc, $limit =2, $offset = 0){
@@ -68,6 +71,21 @@
 
 	}
 
+	function searchForPark($dbc){
+		$search = Input::get('search', "");
+
+		$query = "SELECT * FROM np_details WHERE name = :search";
+
+		$stmt = $dbc->prepare($query);
+
+		$stmt->bindValue(':search', $search, PDO::PARAM_STR);
+
+		$stmt->execute();
+
+		$searchParks = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+
+		return $searchParks;
+	}
 
 	function pageController($dbc) {
 
@@ -76,13 +94,17 @@
 		$page = Input::get('page', 1);
 		$recordsPerPage = Input::get('recordsPerPage', 4);
 		$results = getAllParks($dbc, $recordsPerPage, (($page - 1) * $recordsPerPage));
+		// $results = Park::paginate($page);
+
+		$search = searchForPark($dbc);
 
 		$data = [
 
 			'results' => $results,
 			'page' => $page,
-			'parksCount' => getTotalCount($dbc),
-			'recordsPerPage' => $recordsPerPage
+			'parksCount' => Park::count(),
+			'recordsPerPage' => $recordsPerPage,
+			'search'=> $search
 
 		];
 
@@ -158,7 +180,13 @@
 		<header>
 			<div id='heading'>
 
-				<a href="?page=<?=$page?>&recordsPerPage=<?=$parksCount ?>"><button type="button" class="btn btn-primary btn-lg">View All Results</button></a>
+				<form method="GET" action="national_parks.php">
+					<label for="search">Search for Park: </label>
+						<input type="text" name="search" input="search" placeholder="Enter park name">
+						<button type="submit">Search</button>
+				</form>
+
+				<a href="?page=1&recordsPerPage=<?=$parksCount ?>"><button type="button" class="btn btn-primary btn-lg">View All Results</button></a>
 
 				<a href="?page=<?=$page?>&recordsPerPage=4"><button type="button" class="btn btn-primary btn-lg">View 4 per page</button></a>
 

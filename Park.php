@@ -56,13 +56,13 @@ class Park
 
 		self::dbConnect();
 
-		$countQuery = "SELECT COUNT(*) FROM np_details";
+		$countQuery = "SELECT COUNT(id) FROM np_details";
 
 		$stmt = self::$dbc->query($countQuery);
 
-		$count = (int) $stmt->fetchColumn();
+		$count = $stmt->fetch(PDO::FETCH_NUM);
 
-		return $count;
+		return $count[0];
 	}
 
 
@@ -75,9 +75,30 @@ class Park
 
 		$stmt = self::$dbc->query($parkQuery);
 
-		$allParks = $stmt->fetchAll(PDO::FETCH_OBJ);
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-		return $allParks;
+		$parks = [];
+
+		foreach($results as $result) {
+			$park = new Park();
+			$park->id = $result['id'];
+			$park->name = $result['name'];
+			$park->location = $result['location'];
+			$park->dateEstablished = $result['date_established'];
+			$park->areaInAcres = $result['area']; 
+			$park->tagline = $result['tagline'];
+			$park->description = $result['description'];
+			$park->type = $result['type'];
+
+
+			$parks[]=$park; 
+
+		}
+
+		return $parks;
+
+
+
 	}
 
 //Returns resultsPerPage number of results for the given page number
@@ -85,14 +106,16 @@ class Park
 
 		self::dbConnect();
 
-		$offset = ($pageNo - 1) * $resultsPerPage; 
+		$limit = $resultsPerPage; 
 
-		$query = "SELECT * FROM np_details LIMIT :resultsPerPage OFFSET :offset";
+		$offset = ($pageNo * $resultsPerPage) - $resultsPerPage; 
+
+		$query = "SELECT * FROM np_details ORDER BY name LIMIT :limit OFFSET :offset";
 
 		$stmt = self::$dbc->prepare($query);
 
-		$stmt->bindValue(':resultsPerPage', $resultsPerPage, PDO::PARAM_INT);
-		$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+		$stmt->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
+		$stmt->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
 
 		$stmt->execute();
 
@@ -110,8 +133,8 @@ class Park
 	public $id;
 	public $name;
 	public $location;
-	public $date_established;
-	public $area;
+	public $dateEstablished;
+	public $areaInAcres;
 	public $description;
 	public $type;
 	public $tagline;
@@ -129,8 +152,8 @@ class Park
 
 		$stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
 		$stmt->bindValue(':location', $this->location, PDO::PARAM_STR);
-		$stmt->bindValue(':date_established', $this->date_established, PDO::PARAM_STR);
-		$stmt->bindValue(':area', $this->area, PDO::PARAM_STR);
+		$stmt->bindValue(':date_established', $this->dateEstablished, PDO::PARAM_STR);
+		$stmt->bindValue(':area', $this->areaInAcres, PDO::PARAM_STR);
 		$stmt->bindValue(':description', $this->description, PDO::PARAM_STR);
 		$stmt->bindValue(':type', $this->type, PDO::PARAM_STR);
 		$stmt->bindValue(':tagline', $this->tagline, PDO::PARAM_STR);
