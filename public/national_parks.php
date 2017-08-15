@@ -10,7 +10,7 @@
 	var_dump($_GET);
 
 
-	function addParkToDatabase($dbc){
+	function addParkToDatabase(){
 
 		$name = Input::get('name');
 		$location = Input::get('location');
@@ -35,24 +35,6 @@
 		$park->tagline = $tagline;
 		$park->insert();	
 
-
-	}
-
-
-	function getAllParks($dbc, $limit =2, $offset = 0){
-
-		$query = "SELECT * FROM np_details ORDER BY name LIMIT :limit OFFSET :offset";
-
-		$stmt = $dbc->prepare($query);
-
-		$stmt->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
-		$stmt->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
-
-		$stmt->execute();
-
-		$rows = $stmt->fetchALL(PDO::FETCH_NUM); 
-		return $rows;
-
 	}
 
 	function searchForPark($dbc){
@@ -75,11 +57,10 @@
 
 		$data = [];
 
-		$page = Input::get('page', 1);
+		$page = Input::escape(Input::get('page', 1));
 
-		$recordsPerPage = Input::get('recordsPerPage', Park::count());
+		$recordsPerPage = Input::escape(Input::get('recordsPerPage', Park::count()));
 
-		// $results = getAllParks($dbc, $recordsPerPage, (($page - 1) * $recordsPerPage));
 		$results = Park::paginate($page, $recordsPerPage);
 
 		$search = searchForPark($dbc);
@@ -95,7 +76,7 @@
 		];
 
 		if(!empty($_POST)){
-			addParkToDatabase($dbc);
+			addParkToDatabase();
 			header("Location: http://codeup.dev/national_parks.php");
 			die();
 		}  
@@ -230,13 +211,27 @@
 		<div id="park_details">
 			<?php foreach ($results as $result): ?>
 
-				<a href="https://www.nps.gov/<?= $result->url?>" target="_blank"><h3> <?= $result->name ?></h3></a>
-				<h4>"<?= $result->tagline ?>"</h4>
-				<p><?= $result->description ?></p>
-				<p> Location: <?= $result->location ?></p>
+				<?php if (!empty($result->url)) {?>
+					<a href="https://www.nps.gov/<?= $result->url?>" target="_blank">
+						<h3> <?= Input::escape($result->name) ?></h3>
+					</a>
+				<?php } else { ?>
+					<h3> <?= Input::escape($result->name) ?></h3>
+				<?php }; ?>
+
+
+				<h4>"<?= Input::escape($result->tagline) ?>"</h4>
+
+				<p><?= Input::escape($result->description) ?></p>
+
+				<p> Location: <?= Input::escape($result->location) ?></p>
+
 				<?php $date = strtotime($result->dateEstablished)?>
-				<p> Date Established: <?= date("F j, Y", $date) ?></p>
-				<p> Area: <?= $result->areaInAcres ?> acres</p>
+
+				<p> Date Established: <?= Input::escape(date("F j, Y", $date)) ?></p>
+
+				<p> Area: <?= Input::escape($result->areaInAcres) ?> acres</p>
+
 				<hr>
 			<?php endforeach ?>
 		</div>
