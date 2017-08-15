@@ -110,8 +110,8 @@ class Park
 	public $id;
 	public $name;
 	public $location;
-	public $dateEstablished;
-	public $areaInAcres;
+	public $date_established;
+	public $area;
 	public $description;
 	public $type;
 	public $tagline;
@@ -129,8 +129,8 @@ class Park
 
 		$stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
 		$stmt->bindValue(':location', $this->location, PDO::PARAM_STR);
-		$stmt->bindValue(':date_established', $this->dateEstablished, PDO::PARAM_STR);
-		$stmt->bindValue(':area', $this->areaInAcres, PDO::PARAM_STR);
+		$stmt->bindValue(':date_established', $this->date_established, PDO::PARAM_STR);
+		$stmt->bindValue(':area', $this->area, PDO::PARAM_STR);
 		$stmt->bindValue(':description', $this->description, PDO::PARAM_STR);
 		$stmt->bindValue(':type', $this->type, PDO::PARAM_STR);
 		$stmt->bindValue(':tagline', $this->tagline, PDO::PARAM_STR);

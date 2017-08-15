@@ -14,10 +14,10 @@ require_once __DIR__ .'/Park.php';
 
  // Inserting a new record into the database
      $park = new Park();
-     $park->name = 'aaaaaaa';
+     $park->name = 'aaaaaaa131314';
      $park->location = 'texas';
-     $park->areaInAcres = 48995.91;
-     $park->dateEstablished = '1919-02-26';
+     $park->area = 48995.91;
+     $park->date_established = '1919-02-26';
      $park->insert()
 
  ?>
