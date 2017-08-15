@@ -119,9 +119,30 @@ class Park
 
 		$stmt->execute();
 
-		return $stmt->fetchAll(PDO::FETCH_OBJ);
-		
+		// return $stmt->fetchAll(PDO::FETCH_OBJ);
 
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$output = [];
+
+		foreach($results as $result){
+			$park = new Park();
+			$park->id = $result['id'];
+			$park->name = $result['name'];
+			$park->location = $result['location'];
+			$park->dateEstablished = $result['date_established'];
+			$park->areaInAcres = $result['area']; 
+			$park->tagline = $result['tagline'];
+			$park->description = $result['description'];
+			$park->type = $result['type'];
+			$park->url = $result['home_url'];
+
+
+			$output[]=$park; 
+
+		}		
+
+		return $output;
 	}
 
 

@@ -38,17 +38,6 @@
 
 	}
 
-	// function getTotalCount($dbc){
-	// 	$countQuery = "SELECT COUNT(*) FROM np_details";
-
-	// 	$stmt = $dbc->query($countQuery);
-
-	// 	$count = (int) $stmt->fetchColumn();
-
-	// 	return $count;
-
-	// }
-
 
 	function getAllParks($dbc, $limit =2, $offset = 0){
 
@@ -87,9 +76,11 @@
 		$data = [];
 
 		$page = Input::get('page', 1);
+
 		$recordsPerPage = Input::get('recordsPerPage', Park::count());
-		$results = getAllParks($dbc, $recordsPerPage, (($page - 1) * $recordsPerPage));
-		// $results = Park::paginate($page);
+
+		// $results = getAllParks($dbc, $recordsPerPage, (($page - 1) * $recordsPerPage));
+		$results = Park::paginate($page, $recordsPerPage);
 
 		$search = searchForPark($dbc);
 
@@ -239,13 +230,13 @@
 		<div id="park_details">
 			<?php foreach ($results as $result): ?>
 
-				<a href="https://www.nps.gov/<?= $result[5]?>" target="_blank"><h3> <?= $result[1] ?></h3></a>
-				<h4>"<?= $result[6] ?>"</h4>
-				<p><?= $result[7] ?></p>
-				<p> Location: <?= $result[2] ?></p>
-				<?php $date = strtotime($result[3])?>
+				<a href="https://www.nps.gov/<?= $result->url?>" target="_blank"><h3> <?= $result->name ?></h3></a>
+				<h4>"<?= $result->tagline ?>"</h4>
+				<p><?= $result->description ?></p>
+				<p> Location: <?= $result->location ?></p>
+				<?php $date = strtotime($result->dateEstablished)?>
 				<p> Date Established: <?= date("F j, Y", $date) ?></p>
-				<p> Area: <?= $result[4] ?> acres</p>
+				<p> Area: <?= $result->areaInAcres ?> acres</p>
 				<hr>
 			<?php endforeach ?>
 		</div>
