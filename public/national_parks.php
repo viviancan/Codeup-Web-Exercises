@@ -92,7 +92,7 @@
 		$data = [];
 
 		$page = Input::get('page', 1);
-		$recordsPerPage = Input::get('recordsPerPage', 4);
+		$recordsPerPage = Input::get('recordsPerPage', Park::count());
 		$results = getAllParks($dbc, $recordsPerPage, (($page - 1) * $recordsPerPage));
 		// $results = Park::paginate($page);
 
@@ -186,7 +186,7 @@
 						<button type="submit">Search</button>
 				</form>
 
-				<a href="?page=1&recordsPerPage=<?=$parksCount ?>"><button type="button" class="btn btn-primary btn-lg">View All Results</button></a>
+				<a href="national_parks.php"><button type="button" class="btn btn-primary btn-lg">View All Results</button></a>
 
 				<a href="?page=<?=$page?>&recordsPerPage=4"><button type="button" class="btn btn-primary btn-lg">View 4 per page</button></a>
 

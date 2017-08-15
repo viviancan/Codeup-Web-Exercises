@@ -119,8 +119,8 @@ class Park
 
 		$stmt->execute();
 
-		$rows = $stmt->fetchAll(PDO::FETCH_OBJ);
-		return $rows;
+		return $stmt->fetchAll(PDO::FETCH_OBJ);
+		
 
 	}
 
@@ -138,6 +138,7 @@ class Park
 	public $description;
 	public $type;
 	public $tagline;
+	public $url;
 
 
 // Insert a record into the database
@@ -145,8 +146,8 @@ class Park
 		self::dbConnect();
 
 		$insert = "
-			INSERT INTO np_details(name, location, date_established, area, description, type, tagline)
-			VALUES (:name, :location, :date_established, :area, :description, :type, :tagline);";
+			INSERT INTO np_details(name, location, date_established, area, home_url, tagline, description, type )
+			VALUES (:name, :location, :date_established, :area, :home_url, :tagline, :description, :type);";
 
 		$stmt = self::$dbc->prepare($insert);
 
@@ -157,6 +158,8 @@ class Park
 		$stmt->bindValue(':description', $this->description, PDO::PARAM_STR);
 		$stmt->bindValue(':type', $this->type, PDO::PARAM_STR);
 		$stmt->bindValue(':tagline', $this->tagline, PDO::PARAM_STR);
+		$stmt->bindValue(':home_url', $this->url, PDO::PARAM_STR);
+
 
 		$stmt->execute();
 
