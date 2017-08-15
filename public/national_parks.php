@@ -25,21 +25,16 @@
 			return;
 		}
 
-		$insert = "
-			INSERT INTO np_details (name, location, date_established, area, description, type, tagline)
-			VALUES(:name, :location, :date_established, :area, :description, :type, :tagline);";
+		$park = new Park();
+		$park->name = $name;
+		$park->location = $location;
+		$park->dateEstablished= $date_established;
+		$park->areaInAcres = $area;
+		$park->description = $description;
+		$park->type = $type;
+		$park->tagline = $tagline;
+		$park->insert();	
 
-		$stmt = $dbc->prepare($insert);
-
-		$stmt->bindValue(':name', $name, PDO::PARAM_STR);
-		$stmt->bindValue(':location', $location, PDO::PARAM_STR);
-		$stmt->bindValue(':date_established', $date_established, PDO::PARAM_STR);
-		$stmt->bindValue(':area', $area, PDO::PARAM_STR);	
-		$stmt->bindValue(':description', $description, PDO::PARAM_STR);	
-		$stmt->bindValue(':type', $type, PDO::PARAM_STR);	
-		$stmt->bindValue(':tagline', $tagline, PDO::PARAM_STR);	
-
-		$stmt->execute();	
 
 	}
 
