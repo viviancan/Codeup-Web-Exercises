@@ -37,7 +37,7 @@ require_once __DIR__ .'/Park.php';
 
 // test Park::all()
 
-	// var_dump(Park::all());
+	var_dump(Park::all());
 
 	// $allParks = Park::all();
 
@@ -57,16 +57,16 @@ require_once __DIR__ .'/Park.php';
 	// print_r(Park::paginate(1, 8));
 
 
-// test inserting a new park
+// // test inserting a new park
 
-$park = new Park();
+// $park = new Park();
 
-$park->name = "Frio River Park";
-$park->location = "Texas";
-$park->areaInAcres = 700;
-$park->dateEstablished = '1913-02-02';
-$park->description = 'Yadda yadda';
-$park->insert();
+// $park->name = "Frio River Park";
+// $park->location = "Texas";
+// $park->areaInAcres = 700;
+// $park->dateEstablished = '1913-02-02';
+// $park->description = 'Yadda yadda';
+// $park->insert();
 
 
 
