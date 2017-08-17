@@ -48,7 +48,11 @@
 
 		$stmt->execute();
 
-		$searchParks = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+		$searchParks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		var_dump($searchParks); 
+
+
 
 		return $searchParks;
 	}
@@ -64,6 +68,7 @@
 		$results = Park::paginate($page, $recordsPerPage);
 
 		$search = searchForPark($dbc);
+
 
 		$data = [
 
@@ -209,32 +214,47 @@
 		<hr>
 
 		<div id="park_details">
-			<?php foreach ($results as $result): ?>
 
-				<?php if (!empty($result->url)) {?>
-					<a href="https://www.nps.gov/<?= $result->url?>" target="_blank">
+			<?php if(empty($search)){ ?>
+				<?php foreach ($results as $result): ?>
+
+					<?php if (!empty($result->url)) {?>
+						<a href="https://www.nps.gov/<?= $result->url?>" target="_blank">
+							<h3> <?= Input::escape($result->name) ?></h3>
+						</a>
+					<?php } else { ?>
 						<h3> <?= Input::escape($result->name) ?></h3>
-					</a>
-				<?php } else { ?>
-					<h3> <?= Input::escape($result->name) ?></h3>
-				<?php }; ?>
+					<?php }; ?>
 
 
-				<h4>"<?= Input::escape($result->tagline) ?>"</h4>
+					<h4>"<?= Input::escape($result->tagline) ?>"</h4>
 
-				<p><?= Input::escape($result->description) ?></p>
+					<p><?= Input::escape($result->description) ?></p>
 
-				<p> Location: <?= Input::escape($result->location) ?></p>
+					<p> Location: <?= Input::escape($result->location) ?></p>
 
-				<?php $date = strtotime($result->dateEstablished)?>
+					<?php $date = strtotime($result->dateEstablished)?>
 
-				<p> Date Established: <?= Input::escape(date("F j, Y", $date)) ?></p>
+					<p> Date Established: <?= Input::escape(date("F j, Y", $date)) ?></p>
 
-				<p> Area: <?= Input::escape($result->areaInAcres) ?> acres</p>
+					<p> Area: <?= Input::escape($result->areaInAcres) ?> acres</p>
 
-				<hr>
-			<?php endforeach ?>
+					<hr>
+				<?php endforeach ?>
+			<?php } else { ?>
+
+				<p><?= $search[0]['name'] ?></p>
+				<p><?= $search[0]['tagline'] ?></p>
+				<p><?= $search[0]['description'] ?></p>
+				<p><?= $search[0]['location'] ?></p>
+				<p><?= $search[0]['date_established'] ?></p>
+				<p><?= $search[0]['area'] ?></p>
+
+
+			<?php } ?>
 		</div>
+
+
 
 
 		<div class='container'>

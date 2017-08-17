@@ -33,9 +33,36 @@ class Input
 	}
 
 	public static function escape($input)
-      {
-         return htmlspecialchars(strip_tags($input));
-      }
+	{
+		return htmlspecialchars(strip_tags($input));
+	}
+
+	 public static function getString($key)
+	 {
+	 	$input = self::get($key);
+
+	 	if(is_numeric($input) || !is_string($input)){
+	 		throw new Excpetion("Must be a string!");
+	 	}else if (empty($input)){
+	 		throw new Excpetion("Cannot be empty!");
+	 	}
+
+	 	return $input;
+
+	 }
+
+	 public static function getNumber($key)
+	 {
+	 	$input = self::get($key);
+
+	 	if(!is_numeric($input)) {
+	 		throw new Excpetion("Must be a number");
+	 	} else if (empty($input)){
+	 		throw new Excpetion("Cannot be empty");
+	 	}
+	 	return $input;
+	 	
+	 }
 
 
 
