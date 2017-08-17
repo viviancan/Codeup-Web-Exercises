@@ -64,6 +64,23 @@ class Input
 	 	
 	 }
 
+	 public static function getDate($key)
+	 {
+
+	 	$input = self::get($key)
+	 	if(!is_numeric(strtotime($input))){
+	 		throw new Excpetion("Must be a valid date");
+	 	} else {
+	 		$date = new DateTime();
+	 		$date->setTimestamp(strtotime($input));
+	 		$date->setTimezone(new DateTimeZone('America/Chicago'));
+	 	}
+
+	 	return $date; 
+
+
+	 }
+
 
 
 
